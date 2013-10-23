@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "mongoose": "~3.6.20",
-    "restify": "~2.6.0"
+    "restify": "~2.6.0",
+    "extend": "~1.2.1",
+    "underscore": "~1.5.2"
   }
 }
