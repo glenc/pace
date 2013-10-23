@@ -34,7 +34,7 @@ var NewFamilyHandler = module.exports = (function() {
     }];
   };
 
-  var handle = function(payload, callback) {
+  var handler = function(payload, callback) {
     var data = {
       name: payload.name,
       status: payload.status,
@@ -53,6 +53,6 @@ var NewFamilyHandler = module.exports = (function() {
 
   return {
     name: 'new-family',
-    handle: handle
+    handler: handler
   };
 })();
