@@ -8,8 +8,8 @@
     "angular-bootstrap": "~0.6.0",
     "angular-route": "~1.2.0-rc.3",
     "angular": "~1.2.0-rc.3",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "angular-resource": "~1.2.0-rc.3"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

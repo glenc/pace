@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('adminApp',
-  ['ngRoute'])
+  ['ngRoute', 'ngResource'])
 
   // routes
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+      .when('/families', {
+        templateUrl: 'views/family-list.html',
+        controller: 'FamilyListCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/families'
       });
   });
