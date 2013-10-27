@@ -5,7 +5,7 @@ config.db = {
 };
 
 config.web = {
-  port: 9000
+  port: 8080
 };
 
 config.cqrs = {
