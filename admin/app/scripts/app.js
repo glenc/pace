@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp',
-  ['ngRoute', 'ngResource'])
+  ['ngRoute', 'ngResource', 'ui.bootstrap'])
 
   // routes
   .config(function ($routeProvider) {

@@ -1,0 +1,52 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+      <h4>New Family</h4>
+    </div>
+    <div class="modal-body">
+      <form role="form">
+        <div class="form-group">
+          <label class="control-label" for="name">Family Name</label>
+          <div class="row">
+            <div class="col-md-7">
+              <input name="name" type="text" ng-model="family.name" ng-change="validateName()" class="form-control">
+            </div>
+            <div class="col-md-5 input-text-aligned">
+              <span ng-show="validation.showResults() && !validation.error" class="text-success"><i class="fa fa-check"></i> Name is unique</span>
+              <span ng-show="validation.showResults() && validation.error" class="text-danger"><i class="fa fa-warning"></i> {{validation.error}}</span>
+            </div>
+          </div>
+          <p class="help-block">Enter a unique name for the family - typically the last name.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-7">
+            <div class="form-group">
+              <label class="control-label" for="status">PACE Status</label>
+              <select class="form-control" name="status" ng-model="family.status">
+                <option value="New">New</option>
+                <option value="Active">Currently Active</option>
+                <option value="Waitlist">Waitlist</option>
+                <option value="Alumni">Alumni</option>
+                <option value="Exited">Exited</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group" ng-show="family.status != 'New' && family.status != 'Alumni'">
+              <label class="control-label" for="statusDate" ng-show="family.status == 'Waitlist'">Date Entered Waitlist</label>
+              <label class="control-label" for="statusDate" ng-show="family.status == 'Active'">Date Joined PACE</label>
+              <label class="control-label" for="statusDate" ng-show="family.status == 'Exited'">Date Exited PACE</label>
+              <input class="form-control" name="statusDate" type="date" ng-model="family.statusDate">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+      <button type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="validation.error">Create Family</button>
+    </div>
+  </div>
+</div>

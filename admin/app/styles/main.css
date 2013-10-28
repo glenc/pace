@@ -1,0 +1,9 @@
+/* forms */
+.input-text-aligned {
+  line-height: 2.2em;
+}
+
+/* modal fix */
+.modal {
+  display: block;
+}
