@@ -41,7 +41,12 @@ angular.module('adminApp')
     };
 
     $scope.ok = function() {
-      CommandService.submit('new-family', { name: $scope.family.name });
+      var payload = {
+        name: $scope.family.name,
+        status: $scope.family.status,
+        statusDate: $scope.family.statusDate
+      };
+      CommandService.submit('new-family', payload);
       $modalInstance.close('ok');
     };
   });
