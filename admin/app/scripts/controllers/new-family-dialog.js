@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('NewFamilyDialogCtrl', function ($scope, $modalInstance, $timeout, QueryService) {
+  .controller('NewFamilyDialogCtrl', function ($scope, $modalInstance, $timeout, QueryService, CommandService) {
     // family name validation
     $scope.validation = {
       validating: false,
@@ -41,6 +41,7 @@ angular.module('adminApp')
     };
 
     $scope.ok = function() {
+      CommandService.submit('new-family', { name: $scope.family.name });
       $modalInstance.close('ok');
     };
   });

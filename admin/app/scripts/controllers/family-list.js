@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('FamilyListCtrl', function ($scope, QueryService, $modal) {
+  .controller('FamilyListCtrl', function ($scope, QueryService, PubSub, $modal) {
+    PubSub.subscribe('command-submitted', function(data) { console.log(data); });
+    PubSub.subscribe('command-received', function(data) { console.log(data); });
+    PubSub.subscribe('command-resolved', function(data) { console.log(data); });
 
     // functions
     $scope.newFamily = function() {
@@ -9,7 +12,6 @@ angular.module('adminApp')
         templateUrl: 'views/new-family-dialog.html',
         controller: 'NewFamilyDialogCtrl'
       });
-      console.log('here');
 
       modal.result.then(function(family) {
         console.log('dude');

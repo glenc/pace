@@ -49,6 +49,7 @@ var NewFamilyHandler = module.exports = (function() {
       if (err) return callback(err);
       return callback(null, { family_id: doc.id, message: 'Family created successfully' });
     });
+
   };
 
   return {

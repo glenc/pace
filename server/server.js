@@ -1,6 +1,13 @@
 var mongoose  = require('mongoose');
 var restify   = require('restify');
+var bunyan    = require('bunyan');
 var cqrs      = require('restify-cqrs');
+
+var LOG = bunyan.createLogger({
+  name: 'pace-api',
+  stream: process.stdout,
+  level: 'info'
+});
 
 var crossOrigin = function(req, res, next) {
   if (req.headers.origin) {
@@ -45,21 +52,24 @@ function getEnvironment() {
 }
 
 var env = getEnvironment();
+LOG.info('Starting server for %s', env);
 
 var config = require('./config/' + env + '.js');
 
 var server = restify.createServer({
   name: 'village-api',
-  version: '1.0.0'
+  version: '1.0.0',
+  log: LOG
 });
 
 // plugins
+server.pre(restify.pre.sanitizePath());
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.gzipResponse());
 server.use(crossOrigin);
-server.opts('.*', handleOptions);
+server.opts(/\.*/, handleOptions);
 
 // connect to db
 mongoose.connect(config.db.connection);
@@ -68,7 +78,7 @@ mongoose.connect(config.db.connection);
 cqrs.init(server, config.cqrs, function(err) {
   if (err) { console.log(err); return;}
   server.listen(config.web.port, function start() {
-    console.log('%s listening at %s', server.name, server.url);
+    LOG.info('%s listening at %s', server.name, server.url);
   });
 });
 
