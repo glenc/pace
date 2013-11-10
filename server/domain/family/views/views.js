@@ -19,7 +19,7 @@ function idmap(f) {
 };
 
 module.exports = [
-  view('', 'id name', idmap),
+  view('', 'id name status', idmap),
   view('detail', 'id name contacts', idmap),
   view('contacts', 'contacts',
     function(f) {

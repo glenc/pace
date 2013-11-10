@@ -10,9 +10,9 @@ angular.module('adminApp')
       var deferred = $q.defer();
       PubSub.publish('command-submitted', { command: command, payload: payload });
 
-      $http.post(base + command, payload).
+      $http.post(base + command, payload)
 
-        success(function(data, status) {
+        .success(function(data, status) {
           queue[data.id] = deferred;
           deferred.notify(data.id);
           PubSub.publish('command-received', { command: command, payload: payload, response: data });
@@ -20,9 +20,9 @@ angular.module('adminApp')
             polling = true;
             $timeout(poll, 300);
           }
-        }).
+        })
 
-        error(function(data, status) {
+        .error(function(data, status) {
           PubSub.publish('command-error', { command: command, payload: payload, error: data });
         });
 
@@ -36,8 +36,8 @@ angular.module('adminApp')
         var deferred = $q.defer();
         requests.push(deferred.promise);
 
-        $http.get(base + id).
-          success(function(data, status) {
+        $http.get(base + id)
+          .success(function(data, status) {
             if (data.completedAt) {
               promise.resolve(data);
               PubSub.publish('command-resolved', data);

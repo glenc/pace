@@ -45,5 +45,6 @@ module.exports = [
   new query('waitlist', { status: 'Waitlist' }),
   new query('new',      { status: 'New' }),
   new query('alumni',   { status: 'Alumni' }),
+  new query('exited',   { status: 'Exited' }),
   new get()
 ];

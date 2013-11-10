@@ -10,6 +10,10 @@ angular.module('adminApp',
         templateUrl: 'views/family-list.html',
         controller: 'FamilyListCtrl'
       })
+      .when('/families/:id', {
+        templateUrl: 'views/family-detail.html',
+        controller: 'FamilyDetailCtrl'
+      })
       .otherwise({
         redirectTo: '/families'
       });

@@ -17,13 +17,22 @@ angular.module('adminApp')
         name = arguments.length > 1 ? name : null;
 
         if (view) { parameters.view = view; }
-        if (name) { parameters.query = name; }
 
+        if (name == 'get') {
+          return resource.get(parameters, callback);
+        }
+
+        if (name) { parameters.query = name; }
         return resource.query(parameters, callback);
       };
 
+      var get = function(id, callback) {
+        query('get', '', { id: id }, callback);
+      };
+
       return {
-        query: query
+        query: query,
+        get: get
       };
     };
 
