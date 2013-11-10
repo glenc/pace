@@ -6,12 +6,15 @@ angular.module('adminApp')
     var queue = {};
     var polling = false;
 
-    var submit = function(command, payload, callback) {
+    var submit = function(command, payload) {
+      var deferred = $q.defer();
       PubSub.publish('command-submitted', { command: command, payload: payload });
+
       $http.post(base + command, payload).
 
         success(function(data, status) {
-          queue[data.id] = callback;
+          queue[data.id] = deferred;
+          deferred.notify(data.id);
           PubSub.publish('command-received', { command: command, payload: payload, response: data });
           if (!polling) {
             polling = true;
@@ -21,25 +24,22 @@ angular.module('adminApp')
 
         error(function(data, status) {
           PubSub.publish('command-error', { command: command, payload: payload, error: data });
-          if (callback) {
-            callback(data);
-          };
         });
+
+      return deferred.promise;
     };
 
     var poll = function() {
       var requests = [];
 
-      _.each(queue, function(callback, id) {
+      _.each(queue, function(promise, id) {
         var deferred = $q.defer();
         requests.push(deferred.promise);
 
         $http.get(base + id).
           success(function(data, status) {
             if (data.completedAt) {
-              if (callback) {
-                callback(null, data);
-              };
+              promise.resolve(data);
               PubSub.publish('command-resolved', data);
               delete queue[id];
             }
