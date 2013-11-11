@@ -20,6 +20,73 @@
             </div>
           </div>
         </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="street1">Address</label>
+              <input type="text" class="form-control input-sm" id="street1" name="street1" ng-model="contact.address.street1" placeholder="Street Address">
+            </div>
+            <div class="row narrow-gutter">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" id="city" name="city" ng-model="contact.address.city" placeholder="City">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" id="state" name="state" ng-model="contact.address.state" placeholder="ST">
+                </div>
+              </div>
+              <div class="col-md-4 last">
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" id="zip" name="zip" ng-model="contact.address.zip" placeholder="Zip">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>Phone Numbers</label>
+            <div class="row narrow-gutter" ng-repeat="number in contact.phoneNumbers">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <select class="form-control input-sm" ng-model="number.type">
+                    <option value="Mobile">Mobile</option>
+                    <option value="Home">Home</option>
+                    <option value="Word">Work</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" ng-model="number.number">
+                </div>
+              </div>
+              <div class="col-md-2 last">
+                <a class="input-row-btn text-danger" href="" ng-click="removeNumber(number)"><i class="fa fa-times-circle"></i></a>
+              </div>
+            </div>
+            <div class="row narrow-gutter">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <select class="form-control input-sm" ng-model="newNumber.type">
+                    <option value="Mobile">Mobile</option>
+                    <option value="Home">Home</option>
+                    <option value="Word">Work</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" ng-model="newNumber.number">
+                </div>
+              </div>
+              <div class="col-md-2 last">
+                <a class="input-row-btn" href="" ng-click="addNumber()"><i class="fa fa-plus-circle"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
     <div class="modal-footer">

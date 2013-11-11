@@ -3,7 +3,63 @@
   line-height: 2.2em;
 }
 
+a.input-row-btn {
+  font-size: 18px;
+}
+
 /* modal fix */
 .modal {
   display: block;
+}
+
+/* smaller margin grid */
+.narrow-gutter .col-xs-1,
+.narrow-gutter .col-xs-2,
+.narrow-gutter .col-xs-3,
+.narrow-gutter .col-xs-4,
+.narrow-gutter .col-xs-5,
+.narrow-gutter .col-xs-6,
+.narrow-gutter .col-xs-7,
+.narrow-gutter .col-xs-8,
+.narrow-gutter .col-xs-9,
+.narrow-gutter .col-xs-10,
+.narrow-gutter .col-xs-11,
+.narrow-gutter .col-sm-1,
+.narrow-gutter .col-sm-2,
+.narrow-gutter .col-sm-3,
+.narrow-gutter .col-sm-4,
+.narrow-gutter .col-sm-5,
+.narrow-gutter .col-sm-6,
+.narrow-gutter .col-sm-7,
+.narrow-gutter .col-sm-8,
+.narrow-gutter .col-sm-9,
+.narrow-gutter .col-sm-10,
+.narrow-gutter .col-sm-11,
+.narrow-gutter .col-md-1,
+.narrow-gutter .col-md-2,
+.narrow-gutter .col-md-3,
+.narrow-gutter .col-md-4,
+.narrow-gutter .col-md-5,
+.narrow-gutter .col-md-6,
+.narrow-gutter .col-md-7,
+.narrow-gutter .col-md-8,
+.narrow-gutter .col-md-9,
+.narrow-gutter .col-md-10,
+.narrow-gutter .col-md-11,
+.narrow-gutter .col-lg-1,
+.narrow-gutter .col-lg-2,
+.narrow-gutter .col-lg-3,
+.narrow-gutter .col-lg-4,
+.narrow-gutter .col-lg-5,
+.narrow-gutter .col-lg-6,
+.narrow-gutter .col-lg-7,
+.narrow-gutter .col-lg-8,
+.narrow-gutter .col-lg-9,
+.narrow-gutter .col-lg-10,
+.narrow-gutter .col-lg-11 {
+  padding-right: 0px;
+}
+
+.narrow-gutter .last {
+  padding-right: 15px;
 }
