@@ -2,7 +2,7 @@
 
 <h3>Parents/Guardians</h3>
 <ul class="fa-ul">
-  <li ng-repeat="contact in family.contacts">
+  <li ng-repeat="contact in family.contacts | orderBy:'firstName'">
     <i class="fa-li fa fa-user"></i>
     {{contact.firstName}} {{contact.lastName}}
   </li>
@@ -16,6 +16,6 @@
 <ul class="fa-ul">
   <li ng-repeat="event in family.events | orderBy:'date':true">
     <event-icon event="event" class-name="fa-li text-muted"></event-icon>
-    <span class="text-muted">{{event.date | date:'shortDate'}}</span> - {{event.description}}
+    <span class="text-muted">{{event.date | date:'M/d/yyyy'}}</span> - {{event.description}}
   </li>
 </ul>

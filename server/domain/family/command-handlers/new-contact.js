@@ -5,7 +5,7 @@ var NewContactHandler = module.exports = (function() {
   var eventForContact = function(data) {
     return {
       date: new Date(),
-      description: 'Added new ' + data.type + ' ' + data.firstName + ' ' + data.lastName,
+      description: 'Added new contact ' + data.firstName + ' ' + data.lastName,
       type: 'Data'
     };
   };

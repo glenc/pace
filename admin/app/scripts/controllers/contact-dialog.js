@@ -29,11 +29,10 @@ angular.module('adminApp')
     };
 
     $scope.ok = function() {
-      var payload = {
-        firstName: $scope.contact.firstName,
-        lastName: $scope.contact.lastName,
-        type: 'Parent'
-      };
+      var payload = angular.copy($scope.contact);
+      if ($scope.newNumber.number != '') {
+        payload.phoneNumbers.push($scope.newNumber);
+      }
       $modalInstance.close(payload);
     }
   });

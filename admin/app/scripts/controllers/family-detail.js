@@ -2,9 +2,12 @@
 
 angular.module('adminApp')
   .controller('FamilyDetailCtrl', function ($scope, $routeParams, $modal, QueryService, CommandService) {
-    QueryService.family.get($routeParams.id, function(family) {
-      $scope.family = family;
-    });
+
+    var refreshView = function() {
+      QueryService.family.get($routeParams.id, function(family) {
+        $scope.family = family;
+      });
+    }
 
     $scope.newContact = function() {
       var modal = $modal.open({
@@ -16,8 +19,10 @@ angular.module('adminApp')
         contactData.family_id = $scope.family.id;
         CommandService.submit('new-contact', contactData)
           .then(function(data) {
-            console.log(data);
+            refreshView();
           });
       });
     };
+
+    refreshView();
   });
