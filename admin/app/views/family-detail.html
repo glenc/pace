@@ -1,1 +1,21 @@
-<h1>{{family.name}}</h1>
+<h1>{{family.name}} <small><status-label family="family"></status-label></smal></h1>
+
+<h3>Parents/Guardians</h3>
+<ul class="fa-ul">
+  <li ng-repeat="contact in family.contacts">
+    <i class="fa-li fa fa-user"></i>
+    {{contact.firstName}} {{contact.lastName}}
+  </li>
+  <li>
+    <i class="fa-li fa fa-plus-square"></i>
+    <a href="" ng-click="newContact()">Add New</a>
+  </li>
+</ul>
+
+<h4>Events</h4>
+<ul class="fa-ul">
+  <li ng-repeat="event in family.events | orderBy:'date':true">
+    <event-icon event="event" class-name="fa-li text-muted"></event-icon>
+    <span class="text-muted">{{event.date | date:'shortDate'}}</span> - {{event.description}}
+  </li>
+</ul>

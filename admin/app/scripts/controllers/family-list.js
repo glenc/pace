@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('FamilyListCtrl', function ($scope, QueryService, CommandService, PubSub, $modal) {
+  .controller('FamilyListCtrl', function ($scope, $location, QueryService, CommandService, PubSub, $modal) {
+    $scope.view = {
+      filter: 'active'
+    };
 
     // functions
     $scope.newFamily = function() {
@@ -13,20 +16,19 @@ angular.module('adminApp')
       modal.result.then(function(familyData) {
         CommandService.submit('new-family', familyData)
           .then(function(data) {
-            $scope.showView('active');
+            $location.path('/families/' + data.result.family_id);
           });
       });
     };
 
     // load view
     $scope.refreshView = function() {
-      var view = $scope.view == 'all' ? '' : $scope.view;
+      var view = $scope.view.filter == 'all' ? '' : $scope.view.filter;
       QueryService.family.query(view, function(results) {
         $scope.families = results;
       });
     };
 
-    $scope.view = 'active';
     $scope.refreshView();
 
   });

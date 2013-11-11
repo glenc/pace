@@ -1,6 +1,6 @@
 <h1>Families</h1>
 <button type="button" class="btn btn-primary" ng-click="newFamily()">New Family</button>
-<select ng-change="refreshView()" ng-model="view" class="form-control">
+<select ng-change="refreshView()" ng-model="view.filter" class="form-control">
   <option value="all">All</option>
   <option value="active">Active Families</option>
   <option value="waitlist">Waitlist</option>
@@ -14,10 +14,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="family in families">
+    <tr ng-repeat="family in families | orderBy: 'name'">
       <td>
         <a ng-href="#/families/{{family.id}}">{{family.name}}</a>
-        <span ng-show="view == 'all'" class="label" ng-class="{ 'label-primary': family.status == 'New', 'label-success': family.status == 'Active', 'label-warning': family.status == 'Waitlist', 'label-info': family.status == 'Alumni', 'label-default': family.status == 'Exited' }">{{family.status}}</span>
+        <status-label family="family"></status-label>
       </td>
     </tr>
   </tbody>
