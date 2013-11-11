@@ -11,9 +11,22 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+
+  <!-- theme -->
+  <link rel="stylesheet" href="styles/theme/css/ace-fonts.css" />
+  <link rel="stylesheet" href="styles/theme/css/ace.min.css" />
+  <link rel="stylesheet" href="styles/theme/css/ace-rtl.min.css" />
+  <link rel="stylesheet" href="styles/theme/css/ace-skins.min.css" />
+
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+  <![endif]-->
+
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
+
+  <script src="styles/theme/js/ace-extra.min.js"></script>
 </head>
 <body ng-app="adminApp">
   <!--[if lt IE 7]>
@@ -25,8 +38,29 @@
   <script src="vendor/json3/lib/json3.min.js"></script>
   <![endif]-->
 
-  <!-- Add your site or application content here -->
-  <div class="container" ng-view=""></div>
+  <div class="navbar navbar-default" id="navbar">
+  </div>
+
+  <div class="main-container">
+    <script type="text/javascript">
+      try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <div class="main-container-inner">
+      <a class="menu-toggler" id="menu-toggler" href="#">
+        <span class="menu-text"></span>
+      </a>
+
+      <div class="sidebar" id="sidebar">
+        <script type="text/javascript">
+          try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        </script>
+      </div>
+
+      <div class="main-content">
+        <div class="page-content" ng-view=""></div>
+      </div>
+    </div>
+  </div>
 
   <script src="vendor/jquery/jquery.js"></script>
   <script src="vendor/underscore/underscore.js"></script>
@@ -34,6 +68,9 @@
   <script src="vendor/angular-route/angular-route.js"></script>
   <script src="vendor/angular-resource/angular-resource.js"></script>
   <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+  <script src="styles/theme/js/ace-elements.min.js"></script>
+  <script src="styles/theme/js/ace.min.js"></script>
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/app.js"></script>

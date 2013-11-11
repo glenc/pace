@@ -17,3 +17,4 @@ admin/app/vendor
 dist
 .tmp
 .sass-cache
+.DS_Store
