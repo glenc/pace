@@ -1,10 +1,17 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('ContactDialogCtrl', function ($scope, $modalInstance) {
+  .controller('ContactDialogCtrl', function ($scope, $modalInstance, contact) {
 
-    $scope.contact = {};
+    $scope.contact = contact;
     $scope.newNumber = { type: 'Mobile', number: '' };
+
+    $scope.isNew = function() {
+      if ("id" in contact || "_id" in contact) {
+        return false;
+      }
+      return true;
+    }
 
     $scope.addNumber = function() {
       if (!$scope.contact.phoneNumbers) {
@@ -28,7 +35,12 @@ angular.module('adminApp')
       $modalInstance.dismiss('cancel');
     };
 
-    $scope.ok = function() {
+    $scope.ok = function(action) {
+      if (action) {
+        $modalInstance.close(action);
+        return;
+      }
+
       var payload = angular.copy($scope.contact);
       if ($scope.newNumber.number != '') {
         payload.phoneNumbers.push($scope.newNumber);

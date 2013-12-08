@@ -5,7 +5,7 @@ var UpdateContactHandler = module.exports = (function() {
   var eventForContact = function(data) {
     return {
       date: new Date(),
-      description: 'Updated information for ' + data.firstName + ' ' + data.lastName,
+      description: 'Updated contact information for ' + data.firstName + ' ' + data.lastName,
       type: 'Data'
     };
   };
@@ -17,7 +17,7 @@ var UpdateContactHandler = module.exports = (function() {
 
       var idx = -1;
       for (var i=0; i<= doc.contacts.length; i++) {
-        if (doc.contacts[i].id == payload.id) {
+        if (doc.contacts[i].id == payload.contact_id) {
           idx = i;
           break;
         }
