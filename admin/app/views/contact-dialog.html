@@ -23,6 +23,15 @@
         </div>
         <hr>
         <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="text" class="form-control input-sm" id="email" name="email" ng-model="contact.email">
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label for="street1">Address</label>
@@ -54,7 +63,7 @@
                   <select class="form-control input-sm" ng-model="number.type">
                     <option value="Mobile">Mobile</option>
                     <option value="Home">Home</option>
-                    <option value="Word">Work</option>
+                    <option value="Work">Work</option>
                   </select>
                 </div>
               </div>

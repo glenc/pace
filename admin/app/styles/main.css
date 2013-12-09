@@ -1,3 +1,8 @@
+/* typography */
+.larger {
+  font-size: 1.2em;
+}
+
 /* forms */
 .input-text-aligned {
   line-height: 2.2em;
@@ -5,6 +10,15 @@
 
 a.input-row-btn {
   font-size: 18px;
+}
+
+/* phone-number */
+.phone-number abbr {
+  margin-right: 4px;
+  float: left;
+  width: 10px;
+  text-align: center;
+  margin-bottom: -1px;
 }
 
 /* modal fix */

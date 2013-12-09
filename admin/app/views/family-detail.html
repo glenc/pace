@@ -1,11 +1,42 @@
 <h1>{{family.name}} <small><status-label family="family"></status-label></smal></h1>
 
 <h3>Parents/Guardians</h3>
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th style="width:40%">Name</th>
+      <th style="width:15%">Email</th>
+      <th style="width:15%">Phone</th>
+      <th style="width:15%">Address</th>
+      <th style="width:15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="contact in family.contacts | orderBy:'firstName'">
+      <td><i class="fa fa-user"></td>
+      <td><a href="" ng-click="editContact(contact)" class="larger">{{contact.firstName}} {{contact.lastName}}</a></td>
+      <td><a href="mailto:{{contact.email}}">{{contact.email}}</a></td>
+      <td>
+        <div ng-repeat="number in contact.phoneNumbers">
+          <phone-number number="number"></phone-number>
+        </div>
+      </td>
+      <td>
+        <address ng-show="contact.address">
+          {{contact.address.street1}}<br/>
+          {{contact.address.city}}, {{contact.address.state}} {{contact.address.zip}}
+        </address>
+      </td>
+      <td>
+        <button class="btn btn-minier btn-primary" ng-click="editContact(contact)">Edit</button>
+        <button class="btn btn-minier btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <ul class="fa-ul">
-  <li ng-repeat="contact in family.contacts | orderBy:'firstName'">
-    <i class="fa-li fa fa-user"></i>
-    <a href="" ng-click="editContact(contact)">{{contact.firstName}} {{contact.lastName}}</a>
-  </li>
   <li>
     <i class="fa-li fa fa-plus-square"></i>
     <a href="" ng-click="newContact()">Add New</a>
