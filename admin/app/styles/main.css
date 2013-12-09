@@ -26,6 +26,7 @@ a.input-row-btn {
 .modal {
   display: block;
 }
+.sidebar-shortcuts { height: 41px; }
 
 /* smaller margin grid */
 .narrow-gutter .col-xs-1,
