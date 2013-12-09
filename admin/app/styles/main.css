@@ -21,7 +21,8 @@ a.input-row-btn {
   margin-bottom: -1px;
 }
 
-/* modal fix */
+/* bootstrap ui fix */
+.nav, .pagination, .carousel a { cursor: pointer; }
 .modal {
   display: block;
 }
