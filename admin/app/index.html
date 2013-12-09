@@ -62,9 +62,16 @@
         <script type="text/javascript">
           try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
         </script>
+        <div ng-include="'views/_nav.html'"></div>
       </div>
 
       <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+          <script type="text/javascript">
+            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+          </script>
+          <div ng-include="'views/_breadcrumb.html'"></div>
+        </div>
         <div class="page-content" ng-view=""></div>
       </div>
     </div>
@@ -93,6 +100,8 @@
   <script src="scripts/directives/event-icon.js"></script>
   <script src="scripts/directives/phone-number.js"></script>
   <script src="scripts/filters/truncate.js"></script>
+  <script src="scripts/controllers/nav.js"></script>
+  <script src="scripts/controllers/breadcrumb.js"></script>
   <!-- endbuild -->
 </body>
 </html>
