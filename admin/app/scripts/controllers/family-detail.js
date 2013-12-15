@@ -38,7 +38,7 @@ angular.module('adminApp')
 
       modal.result.then(function(result) {
         if (result === 'delete') {
-          console.log('cannot delete yet');
+          $scope.deleteContact(contact);
         } else {
           result.family_id = $scope.family.id;
           result.contact_id = result._id;
@@ -49,6 +49,14 @@ angular.module('adminApp')
         }
       })
     };
+
+    $scope.deleteContact = function(contact) {
+      var cmd = { family_id: $scope.family.id, contact_id: contact._id };
+      CommandService.submit('delete-contact', cmd)
+        .then(function(data) {
+          refreshView();
+        });
+    }
 
     refreshView();
   });

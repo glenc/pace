@@ -109,7 +109,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button ng-hide="isNew()" type="button" class="btn btn-danger pull-left" ng-click="ok('delete')"><i class="fa fa-times"></i> Delete</button>
+      <confirm-button ng-hide="isNew()" class-name="btn-danger pull-left" text="Delete" action="ok('delete')"></confirm-button>
       <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
       <button ng-show="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Create Contact</button>
       <button ng-hide="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Update Contact</button>

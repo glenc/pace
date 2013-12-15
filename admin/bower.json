@@ -10,7 +10,8 @@
     "angular": "~1.2.0-rc.3",
     "underscore": "~1.5.2",
     "angular-resource": "~1.2.0-rc.3",
-    "angular-ui-utils": "~0.0.4"
+    "angular-ui-utils": "~0.0.4",
+    "jquery-ui": "~1.10.3"
   },
   "devDependencies": {}
 }
