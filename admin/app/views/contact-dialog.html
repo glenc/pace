@@ -6,27 +6,36 @@
       <h4 ng-hide="isNew()">Edit Contact</h4>
     </div>
     <div class="modal-body">
-      <form role="form">
+      <form role="form" name="form" novalidate>
         <div class="row">
           <div class="col-md-5">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" name="firstName" ng-model="contact.firstName">
+            <div class="form-group" ng-class="{'has-error':form.firstName.$dirty && form.firstName.$invalid}">
+              <label for="firstName">First Name *</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" ng-model="contact.firstName" required>
+              <span ng-show="form.firstName.$dirty">
+                <span ng-show="form.firstName.$error.required" class="help-inline">First name is required</span>
+              </span>
             </div>
           </div>
           <div class="col-md-7">
-            <div class="form-group">
-              <label for="firstName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" name="lastName" ng-model="contact.lastName">
+            <div class="form-group" ng-class="{'has-error':form.lastName.$dirty && form.lastName.$invalid}">
+              <label for="firstName">Last Name *</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" ng-model="contact.lastName" required>
+              <span ng-show="form.lastName.$dirty">
+                <span ng-show="form.lastName.$error.required" class="help-inline danger">Last name is required</span>
+              </span>
             </div>
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="text" class="form-control input-sm" id="email" name="email" ng-model="contact.email">
+            <div class="form-group" ng-class="{'has-error':form.email.$dirty && form.email.$invalid}">
+              <label for="email">Email Address *</label>
+              <input type="text" class="form-control input-sm" id="email" name="email" ng-model="contact.email" required>
+              <span ng-show="form.email.$dirty">
+                <span ng-show="form.email.$error.required" class="help-inline">Email address is required</span>
+              </span>
             </div>
           </div>
         </div>
@@ -45,12 +54,12 @@
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" class="form-control input-sm" id="state" name="state" ng-model="contact.address.state" placeholder="ST">
+                  <input type="text" class="form-control input-sm" id="state" name="state" ng-model="contact.address.state" placeholder="ST" maxlength="2">
                 </div>
               </div>
               <div class="col-md-4 last">
                 <div class="form-group">
-                  <input type="text" class="form-control input-sm" id="zip" name="zip" ng-model="contact.address.zip" placeholder="Zip">
+                  <input type="text" class="form-control input-sm" id="zip" name="zip" ng-model="contact.address.zip" placeholder="Zip" maxlength="10">
                 </div>
               </div>
             </div>
@@ -102,8 +111,8 @@
     <div class="modal-footer">
       <button ng-hide="isNew()" type="button" class="btn btn-danger pull-left" ng-click="ok('delete')"><i class="fa fa-times"></i> Delete</button>
       <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-      <button ng-show="isNew()" type="button" class="btn btn-primary" ng-click="ok()">Create Contact</button>
-      <button ng-hide="isNew()" type="button" class="btn btn-primary" ng-click="ok()">Update Contact</button>
+      <button ng-show="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Create Contact</button>
+      <button ng-hide="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Update Contact</button>
     </div>
   </div>
 </div>
