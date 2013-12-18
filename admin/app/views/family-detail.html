@@ -1,4 +1,11 @@
 <h1>{{family.name}} <small><status-label family="family"></status-label></smal></h1>
+<div class="btn-toolbar" role="toolbar">
+  <div class="btn-group">
+    <button type="button" class="btn btn-sm" ng-click="newContact()"><i class="fa fa-plus"></i> New Parent</button>
+    <button type="button" class="btn btn-sm"><i class="fa fa-plus"></i> New Student</button>
+    <button type="button" class="btn btn-sm"><i class="fa fa-gears"></i> Family Settings</button>
+  </div>
+</div>
 
 <h3>Parents/Guardians</h3>
 <table class="table table-condensed table-bordered">
@@ -39,7 +46,28 @@
 <ul class="fa-ul">
   <li>
     <i class="fa-li fa fa-plus-square"></i>
-    <a href="" ng-click="newContact()">Add New</a>
+    <a href="" ng-click="newContact()">Add New Parent</a>
+  </li>
+</ul>
+
+<h3>Students</h3>
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th style="width:5%"></th>
+      <th style="width:65%">Name</th>
+      <th style="width:15%">Grade</th>
+      <th style="width:15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<ul class="fa-ul">
+  <li>
+    <i class="fa-li fa fa-plus-square"></i>
+    <a href="" ng-click="newStudent()">Add New Student</a>
   </li>
 </ul>
 
