@@ -3,6 +3,11 @@
   font-size: 1.2em;
 }
 
+/* misc modal */
+.modal-header h4.after-avatar {
+  margin-left: 50px;
+}
+
 /* forms */
 .input-text-aligned {
   line-height: 2.2em;

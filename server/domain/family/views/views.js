@@ -1,4 +1,7 @@
-var _ = require('underscore');
+var crypto = require('crypto');
+var _      = require('underscore');
+
+
 
 function view(name, select, map, post) {
   return {
@@ -10,26 +13,34 @@ function view(name, select, map, post) {
   };
 };
 
+function toObjectAndIdMap(f) {
+  f = f.toObject();
+  return idmap(f);
+}
+
 function idmap(f) {
-  var obj = f.toObject();
   var id = f._id;
-  delete obj._id;
-  obj.id = id;
-  return obj;
+  delete f._id;
+  f.id = id;
+  return f;
 };
 
+function transformContact(contact) {
+  contact = idmap(contact);
+  if (contact.email) {
+    var md5 = crypto.createHash('md5');
+    md5.update(contact.email);
+    contact.email_hash = md5.digest('hex');
+  }
+  return contact;
+}
+
 module.exports = [
-  view('', 'id name status', idmap),
-  view('detail', 'id name contacts', idmap),
-  view('contacts', 'contacts',
+  view('', 'id name status', toObjectAndIdMap),
+  view('detail', 'id name contacts',
     function(f) {
-      return f.contacts.map(function(c) {
-        var obj = idmap(c);
-        obj.family_id = f.id;
-        return obj;
-      });
-    },
-    function(all) {
-      return _.flatten(all);
+      f = toObjectAndIdMap(f);
+      f.contacts = f.contacts.map(transformContact);
+      return f;
     })
 ];

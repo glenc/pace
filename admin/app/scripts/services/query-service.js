@@ -26,8 +26,8 @@ angular.module('adminApp')
         return resource.query(parameters, callback);
       };
 
-      var get = function(id, callback) {
-        query('get', '', { id: id }, callback);
+      var get = function(id, view, callback) {
+        query('get', view, { id: id }, callback);
       };
 
       return {

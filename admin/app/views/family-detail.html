@@ -4,8 +4,8 @@
 <table class="table table-condensed table-bordered">
   <thead>
     <tr>
-      <th></th>
-      <th style="width:40%">Name</th>
+      <th style="width:5%"></th>
+      <th style="width:35%">Name</th>
       <th style="width:15%">Email</th>
       <th style="width:15%">Phone</th>
       <th style="width:15%">Address</th>
@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="contact in family.contacts | orderBy:'firstName'">
-      <td><i class="fa fa-user"></td>
+      <td class="center"><gravatar hash="{{contact.email_hash}}" size="40"></gravatar></td>
       <td><a href="" ng-click="editContact(contact)" class="larger">{{contact.firstName}} {{contact.lastName}}</a></td>
       <td><a href="mailto:{{contact.email}}">{{contact.email}}</a></td>
       <td>

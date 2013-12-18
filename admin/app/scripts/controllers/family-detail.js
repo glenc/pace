@@ -4,7 +4,7 @@ angular.module('adminApp')
   .controller('FamilyDetailCtrl', function ($scope, $routeParams, $modal, QueryService, CommandService) {
 
     var refreshView = function() {
-      QueryService.family.get($routeParams.id, function(family) {
+      QueryService.family.get($routeParams.id, 'detail', function(family) {
         $scope.family = family;
       });
     }
@@ -41,7 +41,7 @@ angular.module('adminApp')
           $scope.deleteContact(contact);
         } else {
           result.family_id = $scope.family.id;
-          result.contact_id = result._id;
+          result.contact_id = result.id;
           CommandService.submit('update-contact', result)
             .then(function(data) {
               refreshView();
@@ -51,7 +51,7 @@ angular.module('adminApp')
     };
 
     $scope.deleteContact = function(contact) {
-      var cmd = { family_id: $scope.family.id, contact_id: contact._id };
+      var cmd = { family_id: $scope.family.id, contact_id: contact.id };
       CommandService.submit('delete-contact', cmd)
         .then(function(data) {
           refreshView();

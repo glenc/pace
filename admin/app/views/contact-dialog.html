@@ -2,8 +2,9 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="close" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
-      <h4 ng-show="isNew()">New Contact</h4>
-      <h4 ng-hide="isNew()">Edit Contact</h4>
+      <gravatar hash="{{contact.email_hash}}" size="40" class="pull-left"></gravatar>
+      <h4 ng-show="isNew()" class="after-avatar">New Contact</h4>
+      <h4 ng-hide="isNew()" class="after-avatar">Edit Contact</h4>
     </div>
     <div class="modal-body">
       <form role="form" name="form" novalidate>

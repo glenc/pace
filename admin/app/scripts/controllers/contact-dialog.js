@@ -7,7 +7,7 @@ angular.module('adminApp')
     $scope.newNumber = { type: 'Mobile', number: '' };
 
     $scope.isNew = function() {
-      if ("id" in contact || "_id" in contact) {
+      if ("id" in contact) {
         return false;
       }
       return true;
