@@ -1,19 +1,16 @@
 {
-  "name": "village-server",
+  "name": "pace-server",
   "version": "0.0.1",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "grunt test"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/glenc/village"
+    "url": "https://github.com/glenc/pace"
   },
   "author": "Glen Cooper <glencooper@gmail.com>",
   "license": "GPLv2",
   "bugs": {
-    "url": "https://github.com/glenc/village/issues"
+    "url": "https://github.com/glenc/pace/issues"
   },
   "dependencies": {
     "mongoose": "~3.6.20",
