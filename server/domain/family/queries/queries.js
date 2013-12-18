@@ -1,12 +1,12 @@
-var extend  = require('extend');
-var db      = require('../../../db');
+var _  = require('underscore');
+var db = require('../../../db');
 
 function query(name, defaultParams) {
   return {
     name: name,
     model: 'family',
     execute: function(view, parameters, callback) {
-      var p = extend(defaultParams, parameters);
+      var p = _.extend(parameters, defaultParams);
       var select = view.select || '';
       db.Family.find(p, select, function(err, results) {
         if (err) return callback(err);

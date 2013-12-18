@@ -1,23 +1,32 @@
 <h1>Families</h1>
-<button type="button" class="btn btn-primary" ng-click="newFamily()">New Family</button>
-<select ng-change="refreshView()" ng-model="view.filter" class="form-control">
-  <option value="all">All</option>
-  <option value="active">Active Families</option>
-  <option value="waitlist">Waitlist</option>
-  <option value="new">New Families</option>
-  <option value="alumni">Alumni</option>
-</select>
+<div class="btn-toolbar" role="toolbar">
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary btn-sm" ng-click="newFamily()"><i class="fa fa-plus"></i> New Family</button>
+  </div>
+  <div class="btn-group pull-right">
+    <select ng-change="refreshView()" ng-model="view.filter" class="form-control">
+      <option value="all">All</option>
+      <option value="active">Active Families</option>
+      <option value="waitlist">Waitlist</option>
+      <option value="new">New Families</option>
+      <option value="alumni">Alumni</option>
+    </select>
+  </div>
+</div>
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Family</th>
+      <th></th>
+      <th style="width:100%">Family</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="family in families | orderBy: 'name'">
+      <td class="center">
+        <status-label family="family"></status-label>
+      </td>
       <td>
         <a ng-href="#/families/{{family.id}}">{{family.name}}</a>
-        <status-label family="family"></status-label>
       </td>
     </tr>
   </tbody>

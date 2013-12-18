@@ -26,12 +26,20 @@ a.input-row-btn {
   margin-bottom: -1px;
 }
 
+/* toolbars */
+.btn-toolbar {
+  padding-bottom: 10px;
+}
+
 /* bootstrap ui fix */
 .nav, .pagination, .carousel a { cursor: pointer; }
 .modal {
   display: block;
 }
 .sidebar-shortcuts { height: 41px; }
+.btn > i.fa {
+  margin-right: 4px;
+}
 
 /* smaller margin grid */
 .narrow-gutter .col-xs-1,
