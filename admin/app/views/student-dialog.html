@@ -1,0 +1,51 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="close" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+      <h4 ng-show="isNew()">New Student</h4>
+      <h4 ng-hide="isNew()">Edit Student</h4>
+    </div>
+    <div class="modal-body">
+      <form role="form" name="form" novalidate>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group" ng-class="{'has-error':form.firstName.$dirty && form.firstName.$invalid}">
+              <label for="firstName">First Name *</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" ng-model="student.firstName" required>
+              <span ng-show="form.firstName.$dirty">
+                <span ng-show="form.firstName.$error.required" class="help-inline">First name is required</span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group" ng-class="{'has-error':form.lastName.$dirty && form.lastName.$invalid}">
+              <label for="firstName">Last Name *</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" ng-model="student.lastName" required>
+              <span ng-show="form.lastName.$dirty">
+                <span ng-show="form.lastName.$error.required" class="help-inline danger">Last name is required</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" ng-class="{'has-error':form.classOf.$dirty && form.classOf.$invalid}">
+              <label for="classOf">Class Of *</label>
+              <input type="text" class="form-control input-sm" id="classOf" name="classOf" ng-model="student.classOf" required>
+              <span ng-show="form.classOf.$dirty">
+                <span ng-show="form.classOf.$error.required" class="help-inline">Select a valid class</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <confirm-button ng-hide="isNew()" class-name="btn-danger pull-left" text="Delete" action="ok('delete')"></confirm-button>
+      <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+      <button ng-show="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Create Student</button>
+      <button ng-hide="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Update Student</button>
+    </div>
+  </div>
+</div>

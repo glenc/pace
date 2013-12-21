@@ -7,7 +7,7 @@ angular.module('adminApp')
       QueryService.family.get($routeParams.id, 'detail', function(family) {
         $scope.family = family;
       });
-    }
+    };
 
     $scope.newContact = function() {
       var modal = $modal.open({
@@ -56,7 +56,56 @@ angular.module('adminApp')
         .then(function(data) {
           refreshView();
         });
-    }
+    };
+
+    $scope.newStudent = function() {
+      var modal = $modal.open({
+        templateUrl: 'views/student-dialog.html',
+        controller: 'StudentDialogCtrl',
+        resolve: {
+          student: function() { return {}; }
+        }
+      });
+
+      modal.result.then(function(result) {
+        result.family_id = $scope.family.id;
+        CommandService.submit('new-student', result)
+          .then(function(data) {
+            refreshView();
+          });
+      });
+    };
+
+    $scope.editStudent = function(student) {
+      var modal = $modal.open({
+        templateUrl: 'views/student-dialog.html',
+        controller: 'StudentDialogCtrl',
+        resolve: {
+          student: function() { return angular.copy(student); }
+        }
+      });
+
+      modal.result.then(function(result) {
+        if (result === 'delete') {
+          $scope.deleteStudent(student);
+        } else {
+          result.family_id = $scope.family.id;
+          result.student_id = result.id;
+          CommandService.submit('update-student', result)
+            .then(function(data) {
+              refreshView();
+            });
+        }
+      })
+    };
+
+    $scope.deleteContact = function(student) {
+      var cmd = { family_id: $scope.family.id, student_id: student.id };
+      CommandService.submit('delete-student', cmd)
+        .then(function(data) {
+          refreshView();
+        });
+    };
 
     refreshView();
   });

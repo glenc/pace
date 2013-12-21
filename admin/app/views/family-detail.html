@@ -2,7 +2,7 @@
 <div class="btn-toolbar top-toolbar" role="toolbar">
   <div class="btn-group">
     <button type="button" class="btn btn-sm" ng-click="newContact()"><i class="fa fa-plus"></i> New Parent</button>
-    <button type="button" class="btn btn-sm"><i class="fa fa-plus"></i> New Student</button>
+    <button type="button" class="btn btn-sm" ng-click="newStudent()"><i class="fa fa-plus"></i> New Student</button>
     <button type="button" class="btn btn-sm"><i class="fa fa-gears"></i> Family Settings</button>
   </div>
 </div>
@@ -63,6 +63,15 @@
     </tr>
   </thead>
   <tbody>
+    <tr ng-repeat="student in family.students | orderBy:'firstName'">
+      <td class="center"><gravatar size="40"></gravatar></td>
+      <td><a href="" ng-click="editStudent(student)" class="larger">{{student.firstName}} {{student.lastName}}</a></td>
+      <td></td>
+      <td>
+        <button class="btn btn-minier btn-primary" ng-click="editStudent(student)">Edit</button>
+        <confirm-button class-name="btn-minier btn-danger" text="Delete" action="deleteStudent(student)"></confirm-button>
+      </td>
+    </tr>
   </tbody>
 </table>
 
