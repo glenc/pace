@@ -27,8 +27,8 @@ a.input-row-btn {
 }
 
 /* toolbars */
-.btn-toolbar {
-  padding-bottom: 10px;
+.btn-toolbar.top-toolbar {
+  margin-bottom: 10px;
 }
 
 /* bootstrap ui fix */

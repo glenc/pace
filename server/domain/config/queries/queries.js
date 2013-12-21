@@ -1,4 +1,4 @@
-var extend  = require('extend');
+var _  = require('underscore');
 var errors  = require('restify-cqrs').errors;
 var db      = require('../../../db');
 
@@ -7,7 +7,7 @@ function query(name, defaultParams) {
     name: name,
     model: 'config',
     execute: function(view, parameters, callback) {
-      var p = extend(defaultParams, parameters);
+      var p = _.extend(parameters, defaultParams);
       var select = view.select || '';
       db.Config.find(p, select, function(err, results) {
         if (err) return callback(err);

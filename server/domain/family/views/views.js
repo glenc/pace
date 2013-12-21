@@ -35,12 +35,19 @@ function transformContact(contact) {
   return contact;
 }
 
+function transformStudent(student) {
+  return idmap(student);
+}
+
 module.exports = [
   view('', 'id name status', toObjectAndIdMap),
-  view('detail', 'id name contacts',
+  view('detail', 'id name status contacts students logs events',
     function(f) {
       f = toObjectAndIdMap(f);
       f.contacts = f.contacts.map(transformContact);
+      f.students = f.students.map(transformStudent);
+      f.logs = f.logs.map(idmap);
+      f.events = f.events.map(idmap);
       return f;
     })
 ];

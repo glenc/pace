@@ -28,6 +28,12 @@ var contactSchema = new Schema({
   }
 });
 
+var studentSchema = new Schema({
+  firstName:    { type: String, required: true },
+  lastName:     { type: String, required: true },
+  classOf:      { type: String, required: true }
+});
+
 var eventSchema = new Schema({
   date:         { type: Date, required: true },
   type:         { type: String, required: true },
@@ -38,6 +44,7 @@ var familySchema = new Schema({
   name:       { type: String, required: true, unique: true},
   status:     { type: String, required: true, enum: [ 'New', 'Waitlist', 'Active', 'Alumni', 'Exited' ] },
   contacts:   [ contactSchema ],
+  students:   [ studentSchema ],
   events:     [ eventSchema ],
   logs:       [ logSchema ],
   updatedAt:  { type: Date,   required: true },
