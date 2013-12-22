@@ -51,6 +51,13 @@ var familySchema = new Schema({
   createdAt:  { type: Date,   required: true }
 });
 
+// classes
+var classSchema = new Schema({
+  name:           { type: String, required: true, unique: true },
+  firstYear:      { type: String, required: true },
+  graduationYear: { type: String, required: true }
+});
+
 // config
 var configSchema = new Schema({
   key:    { type: String, required: true, unique: true },
@@ -61,8 +68,10 @@ var configSchema = new Schema({
 // export models
 var Family = mongoose.model('Family', familySchema);
 var Config = mongoose.model('Config', configSchema);
+var Class  = mongoose.model('Class', classSchema);
 
 module.exports = {
   Family: Family,
-  Config: Config
+  Config: Config,
+  Class: Class
 };
