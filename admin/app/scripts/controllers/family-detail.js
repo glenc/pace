@@ -99,7 +99,7 @@ angular.module('adminApp')
       })
     };
 
-    $scope.deleteContact = function(student) {
+    $scope.deleteStudent = function(student) {
       var cmd = { family_id: $scope.family.id, student_id: student.id };
       CommandService.submit('delete-student', cmd)
         .then(function(data) {

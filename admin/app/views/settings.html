@@ -1,1 +1,40 @@
 <h1>Settings</h1>
+
+<h2>Classes</h2>
+
+<hr>
+<h2>Config Settings</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th style="width:15%">Key</th>
+      <th style="width:70%">Value</th>
+      <th style="width:15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="config in configs | orderBy: 'key'">
+      <td class="center">
+        <i class="fa fa-tag"></i>
+      </td>
+      <td>
+        <a class="larger" href="" ng-click="editConfig(config)"><b>{{config.key}}</b></a>
+      </td>
+      <td>
+        <pre>{{config.value}}</pre>
+      </td>
+      <td>
+        <button class="btn btn-minier btn-primary" ng-click="editConfig(config)">Edit</button>
+        <confirm-button class-name="btn-minier btn-danger" text="Delete" action="deleteConfig(config)"></confirm-button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul class="fa-ul">
+  <li>
+    <i class="fa-li fa fa-plus-square"></i>
+    <a href="" ng-click="newConfig()">Add New Config Setting</a>
+  </li>
+</ul>
