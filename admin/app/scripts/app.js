@@ -14,6 +14,10 @@ angular.module('adminApp',
         templateUrl: 'views/family-detail.html',
         controller: 'FamilyDetailCtrl'
       })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/families'
       });

@@ -1,11 +1,11 @@
 <ul class="nav nav-list" ng-controller="NavCtrl">
-  <li class="active">
+  <li ng-class="{active:module=='families'}">
     <a href="#/families">
       <i class="fa fa-user"></i>&nbsp;
       <span class="menu-text"> Families </span>
     </a>
   </li>
-  <li>
+  <li ng-class="{active:module=='settings'}">
     <a href="#/settings">
       <i class="fa fa-gears"></i>&nbsp;
       <span class="menu-text"> Settings </span>
