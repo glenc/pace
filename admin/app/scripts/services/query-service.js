@@ -6,7 +6,8 @@ angular.module('adminApp')
 
     var urls = {
       family: '/families',
-      config: '/configs'
+      config: '/configs',
+      cls: '/classes'
     };
 
     var create = function(model) {
@@ -39,7 +40,8 @@ angular.module('adminApp')
 
     return {
       family: create('family'),
-      config: create('config')
+      config: create('config'),
+      cls: create('cls')
     };
 
   });

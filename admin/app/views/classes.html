@@ -1,0 +1,37 @@
+<h1>Classes</h1>
+<div class="btn-toolbar top-toolbar" role="toolbar">
+  <div class="btn-group">
+    <button type="button" class="btn btn-sm btn-primary" ng-click="newClass()"><i class="fa fa-plus"></i> New Class</button>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th style="width:85%">Class</th>
+      <th style="width:15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="class in classes | orderBy: 'name'">
+      <td class="center">
+        <i class="fa fa-star"></i>
+      </td>
+      <td>
+        <a class="larger" href="" ng-click="editClass(class)"><b>{{class.name}}</b></a>
+      </td>
+      <td>
+        <button class="btn btn-minier btn-primary" ng-click="editClass(class)">Edit</button>
+        <confirm-button class-name="btn-minier btn-danger" text="Delete" action="deleteClass(class)"></confirm-button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul class="fa-ul">
+  <li>
+    <i class="fa-li fa fa-plus-square"></i>
+    <a href="" ng-click="newClass()">New Class</a>
+  </li>
+</ul>

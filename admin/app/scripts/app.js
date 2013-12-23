@@ -18,6 +18,10 @@ angular.module('adminApp',
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
+      .when('/classes', {
+        templateUrl: 'views/classes.html',
+        controller: 'ClassesCtrl'
+      })
       .otherwise({
         redirectTo: '/families'
       });

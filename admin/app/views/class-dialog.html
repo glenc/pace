@@ -1,0 +1,50 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="close" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+      <h4 ng-show="isNew()">New Class</h4>
+      <h4 ng-hide="isNew()">Edit Class</h4>
+    </div>
+    <div class="modal-body">
+      <form role="form" name="form" novalidate>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" ng-class="{'has-error':form.name.$dirty && form.name.$invalid}">
+              <label for="name">Name *</label>
+              <input type="text" class="form-control input-sm" id="name" name="name" ng-model="cls.name" required>
+              <span ng-show="form.name.$dirty">
+                <span ng-show="form.name.$error.required" class="help-inline">Select a valid class</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error':form.firstYear.$dirty && form.firstYear.$invalid}">
+              <label for="firstYear">First School Year *</label>
+              <select class="form-control input-sm" id="firstYear" name="firstYear" ng-model="cls.firstYear" ng-options="year for year in years" required></select>
+              <span ng-show="form.firstYear.$dirty">
+                <span ng-show="form.firstYear.$error.required" class="help-inline">Select a first school year</span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" ng-class="{'has-error':form.graduationYear.$dirty && form.graduationYear.$invalid}">
+              <label for="graduationYear">Graduating School Year *</label>
+              <select class="form-control input-sm" id="graduationYear" name="graduationYear" ng-model="cls.graduationYear" ng-options="year for year in years" required></select>
+              <span ng-show="form.graduationYear.$dirty">
+                <span ng-show="form.graduationYear.$error.required" class="help-inline">Select a graduating year</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <confirm-button ng-hide="isNew()" class-name="btn-danger pull-left" text="Delete" action="ok('delete')"></confirm-button>
+      <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+      <button ng-show="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Create Class</button>
+      <button ng-hide="isNew()" type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Update Class</button>
+    </div>
+  </div>
+</div>
