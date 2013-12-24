@@ -33,6 +33,7 @@ angular.module('adminApp')
         if (result === 'delete') {
           $scope.deleteClass(cls);
         } else {
+          result.class_id = result.id;
           CommandService.submit('update-class', result)
             .then(function(data) {
               refreshView();
