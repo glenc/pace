@@ -23,7 +23,7 @@
   <tbody>
     <tr ng-repeat="family in families | orderBy: 'name'">
       <td class="center">
-        <status-label family="family"></status-label>
+        <status-label status="{{family.status}}"></status-label>
       </td>
       <td>
         <a ng-href="#/families/{{family.id}}">{{family.name}}</a>

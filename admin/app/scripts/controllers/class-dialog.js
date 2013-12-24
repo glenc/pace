@@ -2,7 +2,6 @@
 
 angular.module('adminApp')
   .controller('ClassDialogCtrl', function ($scope, $modalInstance, cls, QueryService) {
-
     $scope.cls = cls;
 
     QueryService.config.get('school-calendar', '', function(result) {

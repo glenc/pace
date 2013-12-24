@@ -13,7 +13,6 @@ angular.module('adminApp')
       });
 
       modal.result.then(function(result) {
-        console.log(result);
         CommandService.submit('new-class', result)
           .then(function(data) {
             refreshView();
@@ -26,7 +25,7 @@ angular.module('adminApp')
         templateUrl: 'views/class-dialog.html',
         controller: 'ClassDialogCtrl',
         resolve: {
-          cls: function() { angular.copy(cls); }
+          cls: function() { return angular.copy(cls); }
         }
       });
 

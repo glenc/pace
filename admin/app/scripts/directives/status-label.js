@@ -4,9 +4,9 @@ angular.module('adminApp')
   .directive('statusLabel', function () {
     return {
       scope: {
-        family: '='
+        status: '@'
       },
-      template: '<span class="label" ng-class="{ \'label-primary\': family.status == \'New\', \'label-success\': family.status == \'Active\', \'label-warning\': family.status == \'Waitlist\', \'label-info\': family.status == \'Alumni\', \'label-default\': family.status == \'Exited\' }">{{family.status | lowercase}}</span>',
+      template: '<span class="label" ng-class="{ \'label-primary\': status == \'New\', \'label-success\': status == \'Active\', \'label-warning\': status == \'Waitlist\', \'label-info\': status == \'Alumni\' || status == \'Graduated\', \'label-default\': status == \'Exited\' || status == \'Inactive\' }">{{status | lowercase}}</span>',
       restrict: 'E'
     };
   });
