@@ -8,7 +8,13 @@ function query(name, defaultParams) {
     execute: function(view, parameters, callback) {
       var p = _.extend(parameters, defaultParams);
       var select = view.select || '';
-      db.Family.find(p, select, function(err, results) {
+
+      var q = db.Family.find(p, select);
+      if (select.indexOf('students') != -1 || select == '') {
+        q = q.populate('students.graduatingClass');
+      }
+
+      q.exec(function(err, results) {
         if (err) return callback(err);
         if (view.map) {
           results = results.map(view.map);
@@ -28,13 +34,15 @@ function get() {
     model: 'family',
     execute: function(view, parameters, callback) {
       var select = view.select || '';
-      db.Family.findById(parameters.id, function(err, doc) {
-        if (err) return callback(err);
-        if (view.map) {
-          doc = view.map(doc);
-        }
-        callback(null, doc);
-      });
+      db.Family.findById(parameters.id)
+               .populate('students.graduatingClass')
+               .exec(function(err, doc) {
+                 if (err) return callback(err);
+                 if (view.map) {
+                   doc = view.map(doc);
+                 }
+                 callback(null, doc);
+               });
     }
   }
 }

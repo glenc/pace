@@ -1,7 +1,9 @@
-var crypto = require('crypto');
-var _      = require('underscore');
+var crypto          = require('crypto');
+var _               = require('underscore');
+var db              = require('../../../db');
+var SchoolCalendar  = require('../../../lib/school-calendar');
 
-
+var calendar = new SchoolCalendar(db);
 
 function view(name, select, map, post) {
   return {
@@ -36,6 +38,8 @@ function transformContact(contact) {
 }
 
 function transformStudent(student) {
+  student = idmap(student);
+  student.grade = calendar.gradeLevel(student.graduatingClass)
   return idmap(student);
 }
 
