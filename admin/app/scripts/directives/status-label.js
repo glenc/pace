@@ -6,7 +6,7 @@ angular.module('adminApp')
       scope: {
         status: '@'
       },
-      template: '<span class="label" ng-class="{ \'label-primary\': status == \'New\', \'label-success\': status == \'Active\', \'label-warning\': status == \'Waitlist\', \'label-info\': status == \'Alumni\' || status == \'Graduated\', \'label-default\': status == \'Exited\' || status == \'Inactive\' }">{{status | lowercase}}</span>',
+      template: '<span class="label" ng-class="{ \'label-primary\': status == \'New\', \'label-success\': status == \'Active\', \'label-warning\': status == \'Waitlist\', \'label-info\': status == \'Alumni\' || status == \'Graduated\', \'label-default\': status == \'Exited\' || status == \'Future\' }">{{status | lowercase}}</span>',
       restrict: 'E'
     };
   });

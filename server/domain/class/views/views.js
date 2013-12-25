@@ -86,7 +86,7 @@ function status(c) {
     return 'Graduated';
 
   if (c.grade < minGrade)
-    return 'Inactive';
+    return 'Future';
 
   return 'Active'
 }

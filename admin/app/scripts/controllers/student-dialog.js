@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('StudentDialogCtrl', function ($scope, $modalInstance, student) {
+  .controller('StudentDialogCtrl', function ($scope, $modalInstance, student, QueryService) {
 
     $scope.student = student;
+
+    QueryService.cls.query('', function(results) {
+      $scope.classes = _.sortBy(results, function(r) { return r.name });
+    });
 
     $scope.isNew = function() {
       if ("id" in student) {

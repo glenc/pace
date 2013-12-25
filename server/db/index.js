@@ -29,9 +29,9 @@ var contactSchema = new Schema({
 });
 
 var studentSchema = new Schema({
-  firstName:    { type: String, required: true },
-  lastName:     { type: String, required: true },
-  classOf:      { type: String, required: true }
+  firstName:        { type: String, required: true },
+  lastName:         { type: String, required: true },
+  graduatingClass:  { type: Schema.Types.ObjectId, required: true, ref:'Class' }
 });
 
 var eventSchema = new Schema({

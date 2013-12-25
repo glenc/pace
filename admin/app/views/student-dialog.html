@@ -30,11 +30,11 @@
         <hr>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group" ng-class="{'has-error':form.classOf.$dirty && form.classOf.$invalid}">
-              <label for="classOf">Class Of *</label>
-              <input type="text" class="form-control input-sm" id="classOf" name="classOf" ng-model="student.classOf" required>
-              <span ng-show="form.classOf.$dirty">
-                <span ng-show="form.classOf.$error.required" class="help-inline">Select a valid class</span>
+            <div class="form-group" ng-class="{'has-error':form.graduatingClass.$dirty && form.graduatingClass.$invalid}">
+              <label for="graduatingClass">Graduating Class *</label>
+              <select class="form-control input-sm" id="graduatingClass" name="graduatingClass" ng-model="student.graduatingClass" ng-options="c.id as c.name for c in classes" required></select>
+              <span ng-show="form.graduatingClass.$dirty">
+                <span ng-show="form.graduatingClass.$error.required" class="help-inline">Select a valid class</span>
               </span>
             </div>
           </div>

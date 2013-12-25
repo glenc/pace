@@ -17,7 +17,7 @@ var DeleteStudentHandler = module.exports = (function() {
 
       var idx = -1;
       for (var i=0; i<= doc.students.length; i++) {
-        if (doc.students[i].id == payload.contact_id) {
+        if (doc.students[i].id == payload.student_id) {
           idx = i;
           break;
         }
