@@ -17,6 +17,15 @@ a.input-row-btn {
   font-size: 18px;
 }
 
+/* table styles */
+th > .form-group {
+  margin: 0;
+}
+
+th.bottom {
+  vertical-align: bottom;
+}
+
 /* phone-number */
 .phone-number abbr {
   margin-right: 4px;

@@ -17,11 +17,18 @@
   <thead>
     <tr>
       <th></th>
-      <th style="width:100%">Family</th>
+      <th style="width:100%" class="bottom">
+        Family
+        <form class="form-inline pull-right">
+          <div class="form-group">
+            <input type="text" name="search" id="search" class="form-control input-sm" placeholder="Search" ng-model="search.query">
+          </div>
+        </form>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="family in families | orderBy: 'name'">
+    <tr ng-repeat="family in families | filter:{name:search.query} | orderBy: 'name'">
       <td class="center">
         <status-label status="{{family.status}}"></status-label>
       </td>
