@@ -39,8 +39,9 @@ function transformContact(contact) {
 
 function transformStudent(student) {
   student = idmap(student);
-  student.grade = calendar.gradeLevel(student.graduatingClass)
-  return idmap(student);
+  student.grade = calendar.gradeLevel(student.graduatingClass);
+  student.graduatingClass = student.graduatingClass._id;
+  return student;
 }
 
 module.exports = [

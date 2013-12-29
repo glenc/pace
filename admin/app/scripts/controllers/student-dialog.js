@@ -10,6 +10,7 @@ angular.module('adminApp')
     });
 
     $scope.isNew = function() {
+      console.log(student);
       if ("id" in student) {
         return false;
       }

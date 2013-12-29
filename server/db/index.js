@@ -31,6 +31,7 @@ var contactSchema = new Schema({
 var studentSchema = new Schema({
   firstName:        { type: String, required: true },
   lastName:         { type: String, required: true },
+  gender:           { type: String, required: true, enum: ['M', 'F'], default: 'M' },
   graduatingClass:  { type: Schema.Types.ObjectId, required: true, ref:'Class' }
 });
 

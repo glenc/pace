@@ -29,7 +29,19 @@
         </div>
         <hr>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-5">
+            <div class="form-group" ng-class="{'has-error':form.gender.$dirty && form.gender.$invalid}">
+              <label for="gender">Gender *</label>
+              <select class="form-control input-sm" id="gender" name="gender" ng-model="student.gender" required>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
+              <span ng-show="form.gender.$dirty">
+                <span ng-show="form.gender.$error.required" class="help-inline">Select a valid class</span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-7">
             <div class="form-group" ng-class="{'has-error':form.graduatingClass.$dirty && form.graduatingClass.$invalid}">
               <label for="graduatingClass">Graduating Class *</label>
               <select class="form-control input-sm" id="graduatingClass" name="graduatingClass" ng-model="student.graduatingClass" ng-options="c.id as c.name for c in classes" required></select>
