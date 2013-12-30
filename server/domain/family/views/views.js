@@ -1,34 +1,26 @@
+var util            = require('util');
 var crypto          = require('crypto');
 var _               = require('underscore');
 var db              = require('../../../db');
 var SchoolCalendar  = require('../../../lib/school-calendar');
+var View            = require('../../../lib/domain-model').View;
 
 var calendar = new SchoolCalendar(db);
 
-function view(name, select, map, post) {
-  return {
-    name: name,
-    model: 'family',
-    select: select,
-    map: map,
-    post: post
-  };
+function FamilyView(name, select) {
+  View.call(this, 'family', name, select);
 };
 
-function toObjectAndIdMap(f) {
-  f = f.toObject();
-  return idmap(f);
-}
+util.inherits(FamilyView, View);
 
-function idmap(f) {
-  var id = f._id;
-  delete f._id;
-  f.id = id;
-  return f;
+FamilyView.prototype.map = function(obj) {
+  obj = View.prototype.map(obj);
+  if (obj.contacts) obj.contacts = obj.contacts.map(transformContact);
+  if (obj.students) obj.students = obj.students.map(transformStudent);
+  return obj;
 };
 
 function transformContact(contact) {
-  contact = idmap(contact);
   if (contact.email) {
     var md5 = crypto.createHash('md5');
     md5.update(contact.email);
@@ -38,21 +30,14 @@ function transformContact(contact) {
 }
 
 function transformStudent(student) {
-  student = idmap(student);
-  student.grade = calendar.gradeLevel(student.graduatingClass);
-  student.graduatingClass = student.graduatingClass._id;
+  if (student.graduatingClass) {
+    student.grade = calendar.gradeLevel(student.graduatingClass);
+    student.graduatingClass = student.graduatingClass._id;
+  }
   return student;
 }
 
 module.exports = [
-  view('', 'id name status', toObjectAndIdMap),
-  view('detail', 'id name status contacts students logs events',
-    function(f) {
-      f = toObjectAndIdMap(f);
-      f.contacts = f.contacts.map(transformContact);
-      f.students = f.students.map(transformStudent);
-      f.logs = f.logs.map(idmap);
-      f.events = f.events.map(idmap);
-      return f;
-    })
+  new FamilyView('', 'id name status'),
+  new FamilyView('detail', 'id name status contacts students logs events')
 ];

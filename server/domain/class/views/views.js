@@ -1,37 +1,23 @@
+var util            = require('util');
 var db              = require('../../../db');
 var SchoolCalendar  = require('../../../lib/school-calendar');
+var View            = require('../../../lib/domain-model').View;
 
 var calendar = new SchoolCalendar(db);
 
-function view(name, select, map, post) {
-  return {
-    name: name,
-    model: 'class',
-    select: select,
-    map: map,
-    post: post
-  };
+function ClassView(name, select) {
+  View.call(this, 'class', name, select);
 };
 
-function toObjectAndIdMap(f) {
-  f = f.toObject();
-  return idmap(f);
-}
+util.inherits(ClassView, View);
 
-function idmap(f) {
-  var id = f._id;
-  delete f._id;
-  f.id = id;
-  return f;
-};
-
-function transform(c) {
-  c = toObjectAndIdMap(c);
-  c.grade = calendar.gradeLevel(c);
-  c.status = calendar.classStatus(c);
-  return c;
+ClassView.prototype.map = function(obj) {
+  obj = View.prototype.map(obj);
+  if (obj.firstYear) obj.grade = calendar.gradeLevel(obj);
+  if (obj.firstYear && obj.graduationYear) obj.status = calendar.classStatus(obj);
+  return obj;
 };
 
 module.exports = [
-  view('', 'id name firstYear graduationYear', transform)
+  new ClassView('', 'id name firstYear graduationYear')
 ];
