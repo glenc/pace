@@ -19,5 +19,5 @@ ClassView.prototype.map = function(obj) {
 };
 
 module.exports = [
-  new ClassView('', 'id name firstYear graduationYear')
+  new ClassView('', '_id name firstYear graduationYear')
 ];

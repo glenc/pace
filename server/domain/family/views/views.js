@@ -38,6 +38,6 @@ function transformStudent(student) {
 }
 
 module.exports = [
-  new FamilyView('', 'id name status'),
-  new FamilyView('detail', 'id name status contacts students logs events')
+  new FamilyView('', '_id name status'),
+  new FamilyView('detail', '_id name status contacts students logs events')
 ];

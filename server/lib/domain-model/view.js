@@ -5,7 +5,7 @@ function View(model, name, select) {
 };
 
 View.prototype.map = function(obj) {
-  obj = obj.toObject();
+  if (obj.toObject) obj = obj.toObject();
   obj = View.prototype.fixIds(obj);
   return obj;
 };
