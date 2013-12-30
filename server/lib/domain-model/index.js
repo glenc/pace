@@ -1,4 +1,5 @@
 module.exports = {
   View:   require('./view'),
-  Getter: require('./getter')
+  Getter: require('./getter'),
+  Query: require('./query')
 }

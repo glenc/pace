@@ -32,7 +32,7 @@ function transformContact(contact) {
 function transformStudent(student) {
   if (student.graduatingClass) {
     student.grade = calendar.gradeLevel(student.graduatingClass);
-    student.graduatingClass = student.graduatingClass._id;
+    student.graduatingClass = student.graduatingClass.id;
   }
   return student;
 }
