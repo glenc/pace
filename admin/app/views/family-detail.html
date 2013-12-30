@@ -11,6 +11,7 @@
 </div>
 
 <h3 class="header blue lighter">
+  <i class="fa fa-bars"></i>
   Parents/Guardians
 </h3>
 <table class="table table-condensed table-bordered">
@@ -55,7 +56,10 @@
   </li>
 </ul>
 
-<h3 class="header blue lighter">Students</h3>
+<h3 class="header blue lighter">
+  <i class="fa fa-bars"></i>
+  Students
+</h3>
 <table class="table table-condensed table-bordered">
   <thead>
     <tr>
@@ -85,7 +89,10 @@
   </li>
 </ul>
 
-<h5 class="header lighter">History</h5>
+<h5 class="header lighter grey">
+  <i class="fa fa-clock-o"></i>
+  History
+</h5>
 <ul class="fa-ul">
   <li ng-repeat="event in family.events | orderBy:'date':true">
     <event-icon event="event" class-name="fa-li text-muted"></event-icon>
