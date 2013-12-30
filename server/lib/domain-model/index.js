@@ -1,3 +1,4 @@
 module.exports = {
-  View: require('./view')
+  View:   require('./view'),
+  Getter: require('./getter')
 }

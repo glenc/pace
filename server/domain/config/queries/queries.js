@@ -1,6 +1,8 @@
-var _  = require('underscore');
+var util    = require('util');
+var _       = require('underscore');
 var errors  = require('restify-cqrs').errors;
 var db      = require('../../../db');
+var Getter  = require('../../../lib/domain-model').Getter;
 
 function query(name, defaultParams) {
   return {
@@ -23,25 +25,17 @@ function query(name, defaultParams) {
   };
 };
 
-function get() {
-  return {
-    name: 'get',
-    model: 'config',
-    execute: function(view, parameters, callback) {
-      var select = view.select || '';
-      db.Config.findOne({ key: parameters.id }, function(err, doc) {
-        if (err) return callback(err);
-        if (!doc) return callback(new errors.NotFoundError());
-        if (view.map) {
-          doc = view.map(doc);
-        }
-        callback(null, doc);
-      });
-    }
-  }
-}
+function ConfigGetter() {
+  Getter.call(this, 'config', db.Config);
+};
+
+util.inherits(ConfigGetter, Getter);
+
+ConfigGetter.prototype.createQuery = function(parameters) {
+  return this._model.findOne({key: parameters.id});
+};
 
 module.exports = [
   new query('', {}),
-  new get()
+  new ConfigGetter()
 ];

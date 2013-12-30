@@ -1,5 +1,6 @@
 var _  = require('underscore');
 var db = require('../../../db');
+var Getter = require('../../../lib/domain-model').Getter;
 
 function query(name, defaultParams) {
   return {
@@ -28,25 +29,6 @@ function query(name, defaultParams) {
   };
 };
 
-function get() {
-  return {
-    name: 'get',
-    model: 'family',
-    execute: function(view, parameters, callback) {
-      var select = view.select || '';
-      db.Family.findById(parameters.id)
-               .populate('students.graduatingClass')
-               .exec(function(err, doc) {
-                 if (err) return callback(err);
-                 if (view.map) {
-                   doc = view.map(doc);
-                 }
-                 callback(null, doc);
-               });
-    }
-  }
-}
-
 module.exports = [
   new query('', {}),
   new query('active',   { status: 'Active' }),
@@ -54,5 +36,5 @@ module.exports = [
   new query('new',      { status: 'New' }),
   new query('alumni',   { status: 'Alumni' }),
   new query('exited',   { status: 'Exited' }),
-  new get()
+  new Getter('family', db.Family, 'students.graduatingClass')
 ];

@@ -1,5 +1,6 @@
-var _  = require('underscore');
-var db = require('../../../db');
+var _       = require('underscore');
+var db      = require('../../../db');
+var Getter  = require('../../../lib/domain-model').Getter;
 
 function query(name, defaultParams) {
   return {
@@ -22,24 +23,7 @@ function query(name, defaultParams) {
   };
 };
 
-function get() {
-  return {
-    name: 'get',
-    model: 'class',
-    execute: function(view, parameters, callback) {
-      var select = view.select || '';
-      db.Class.findById(parameters.id, function(err, doc) {
-        if (err) return callback(err);
-        if (view.map) {
-          doc = view.map(doc);
-        }
-        callback(null, doc);
-      });
-    }
-  }
-}
-
 module.exports = [
   new query('', {}),
-  new get()
+  new Getter('class', db.Class)
 ];
