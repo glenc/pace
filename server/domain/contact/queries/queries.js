@@ -15,7 +15,6 @@ function flattenContacts(results) {
           .map(function(result) {
             return _.map(result.contacts, function(c) {
               c.family_id = result._id;
-              c.family_name = result.name;
               return c;
             });
           })
