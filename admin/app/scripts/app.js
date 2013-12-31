@@ -22,6 +22,19 @@ angular.module('adminApp',
         templateUrl: 'views/classes.html',
         controller: 'ClassesCtrl'
       })
+      .when('/reports', {
+        templateUrl: 'views/reports.html',
+        controller: 'ReportsCtrl'
+      })
+      .when('/reports/contact-report/:status', {
+        templateUrl: 'views/ContactReportCtrl'
+      })
+      .when('/reports/student-report/:grade', {
+        templateUrl: 'views/StudentReportCtrl'
+      })
+      .when('/reports/family-report/:status', {
+        templateUrl: 'views/FamilyReportCtrl'
+      })
       .otherwise({
         redirectTo: '/families'
       });
