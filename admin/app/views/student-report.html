@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>{{title}}</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="student in students | orderBy:'firstName'">
+      <td>{{student.firstName}} {{student.lastName}}</td>
+      <td>{{student.grade}}</td>
+    </tr>
+  </tbody>
+</table>

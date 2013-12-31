@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>{{title}}</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Numbers</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="contact in contacts | orderBy:['lastName', 'firstName']">
+      <td>{{contact.lastName}}, {{contact.firstName}}</td>
+      <td>{{contact.email}}</td>
+      <td>
+        <ul class="list-unstyled">
+          <li ng-repeat="number in contact.phoneNumbers | orderBy:'type'"><phone-number number=number></phone-number></li>
+        </ul>
+      </td>
+      <td>
+        <address ng-show="contact.address">
+          {{contact.address.street1}}<br/>
+          {{contact.address.city}}, {{contact.address.state}} {{contact.address.zip}}
+        </address>
+      </td>
+    </tr>
+  </tbody>
+</table>

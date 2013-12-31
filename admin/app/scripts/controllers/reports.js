@@ -6,7 +6,6 @@ angular.module('adminApp')
       {
         name: 'Family Reports',
         color: 'blue',
-        description: 'Family lists with contact info by status',
         reports: [
           { name: 'Active Families', url: 'reports/family-report/active' },
           { name: 'Waitlist Families', url: 'reports/family-report/waitlist' },
@@ -19,7 +18,6 @@ angular.module('adminApp')
       {
         name: 'Contact Reports',
         color: 'red',
-        description: 'Phone and address lists for PACE parents',
         reports: [
           { name: 'Active Contacts', url: 'reports/contact-report/active' },
           { name: 'Waitlist Contacts', url: 'reports/contact-report/waitlist' },
@@ -30,7 +28,6 @@ angular.module('adminApp')
       {
         name: 'Student Reports',
         color: 'purple',
-        description: 'Active PACE students',
         reports: [
           { name: 'All Students', url: 'reports/student-report' },
           { name: '1st Grade', url: 'reports/student-report/grade1' },

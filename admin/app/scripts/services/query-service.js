@@ -7,7 +7,9 @@ angular.module('adminApp')
     var urls = {
       family: '/families',
       config: '/configs',
-      cls: '/classes'
+      cls: '/classes',
+      student: '/students',
+      contact: '/contacts'
     };
 
     var create = function(model) {
@@ -41,7 +43,9 @@ angular.module('adminApp')
     return {
       family: create('family'),
       config: create('config'),
-      cls: create('cls')
+      cls: create('cls'),
+      student: create('student'),
+      contact: create('contact')
     };
 
   });

@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>{{title}}</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Parents</th>
+      <th>Students</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="family in families | orderBy:'name'">
+      <td>{{family.name}}</td>
+      <td>
+        <ul class="list-unstyled">
+          <li ng-repeat="contact in family.contacts | orderBy:'firstName'">{{contact.firstName}} {{contact.lastName}}</li>
+        </ul>
+      </td>
+      <td>
+        <ul class="list-unstyled">
+          <li ng-repeat="student in family.students | orderBy:'grade'">
+            {{student.firstName}} {{student.lastName}}
+            <span class="text-muted">({{student.grade | ordinal}})</span>
+          </li>
+        </ul>
+      </td>
+      <td>{{family.status}}</td>
+    </tr>
+  </tbody>
+</table>
