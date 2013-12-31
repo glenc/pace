@@ -1,7 +1,6 @@
 var util           = require('util');
 var _              = require('underscore');
 var db             = require('../../../db');
-var Getter         = require('../../../lib/domain-model').Getter;
 var Query          = require('../../../lib/domain-model').Query;
 var SchoolCalendar = require('../../../lib/school-calendar');
 
