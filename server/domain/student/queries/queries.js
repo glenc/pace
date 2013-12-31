@@ -1,8 +1,11 @@
-var util    = require('util');
-var _       = require('underscore');
-var db      = require('../../../db');
-var Getter  = require('../../../lib/domain-model').Getter;
-var Query   = require('../../../lib/domain-model').Query;
+var util           = require('util');
+var _              = require('underscore');
+var db             = require('../../../db');
+var Getter         = require('../../../lib/domain-model').Getter;
+var Query          = require('../../../lib/domain-model').Query;
+var SchoolCalendar = require('../../../lib/school-calendar');
+
+var calendar = new SchoolCalendar(db);
 
 function StudentQuery(name, defaultParams) {
   Query.call(this, 'student', db.Family, name, defaultParams);
@@ -21,14 +24,31 @@ function flattenStudents(results) {
           })
           .flatten()
           .value();
-}
+};
 
 StudentQuery.prototype.execute = function(view, parameters, callback) {
-  var q = this.createQuery(view, parameters);
+  var p = _.extend(parameters, this._defaultParams);
 
+  // handle grade
+  var gradeFilter = null;
+  if (p.grade) {
+    gradeFilter = calendar.firstYearForGrade(p.grade);
+    delete p.grade;
+    view.select += ' graduatingClass';
+  }
+
+  var q = this.createQuery(view, _.clone(p));
   q.exec(function(err, results) {
     if (err) return callback(err);
     results = flattenStudents(results);
+
+    if (gradeFilter) {
+      results = _.filter(results, function(r) { return r.graduatingClass.firstYear == gradeFilter; });
+    }
+
+    if (_.isEmpty(p) == false) {
+      results = _.where(results, p);
+    }
 
     if (view.map) {
       results = results.map(view.map);
@@ -42,7 +62,7 @@ StudentQuery.prototype.execute = function(view, parameters, callback) {
 
 StudentQuery.prototype.createQuery = function(view, parameters) {
   // add students. to the beginning of each parameter
-  for (prop in parameters) {
+  for (var prop in parameters) {
     var nm = "students." + prop;
     parameters[nm] = parameters[prop];
     delete parameters[prop];
@@ -52,14 +72,18 @@ StudentQuery.prototype.createQuery = function(view, parameters) {
   var select = view.select || '';
   select = _.map(select.split(' '), function(s) { return 'students.' + s; }).join(' ');
 
-  var p = _.extend(parameters, this._defaultParams);
-
-  var q = this._model.find(p, select);
+  var q = this._model.find(parameters, select);
   q.populate('students.graduatingClass');
 
   return q;
 };
 
 module.exports = [
-  new StudentQuery('')
+  new StudentQuery(''),
+  new StudentQuery('grade6', { grade: 6 }),
+  new StudentQuery('grade5', { grade: 5 }),
+  new StudentQuery('grade4', { grade: 4 }),
+  new StudentQuery('grade3', { grade: 3 }),
+  new StudentQuery('grade2', { grade: 2 }),
+  new StudentQuery('grade1', { grade: 1 })
 ];
