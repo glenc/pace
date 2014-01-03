@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
@@ -39,17 +39,22 @@
   <![endif]-->
 
   <div class="navbar navbar-default" id="navbar">
-    <div class="navbar-header pull-left">
-      <a href="#/" class="navbar-brand">
-        <small>
-          <i class="fa fa-leaf"></i>&nbsp;
-          PACE Membership Administration
-        </small>
-      </a>
+    <script type="text/javascript">
+      try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+    <div class="navbar-container" id="navbar-container">
+      <div class="navbar-header pull-left">
+        <a href="#/" class="navbar-brand">
+          <small>
+            <i class="fa fa-leaf"></i>&nbsp;
+            PACE Membership Administration
+          </small>
+        </a>
+      </div>
     </div>
   </div>
 
-  <div class="main-container">
+  <div class="main-container" id="main-container">
     <script type="text/javascript">
       try{ace.settings.check('main-container' , 'fixed')}catch(e){}
     </script>
@@ -69,6 +74,14 @@
         </div>
 
         <div ng-include="'views/_nav.html'"></div>
+
+        <div class="sidebar-collapse" id="sidebar-collapse">
+          <i class="fa fa-angle-double-left icon-angle-double-left" data-icon1="fa-angle-double-left" data-icon2="fa-angle-double-right"></i>
+        </div>
+
+        <script type="text/javascript">
+          try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+        </script>
       </div>
 
       <div class="main-content">
@@ -78,7 +91,12 @@
           </script>
           <div ng-include="'views/_breadcrumb.html'"></div>
         </div>
-        <div class="page-content" ng-view=""></div>
+        <div class="page-content">
+          <div class="row">
+            <div class="col-xs-12" ng-view="">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
