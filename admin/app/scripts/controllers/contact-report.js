@@ -15,4 +15,8 @@ angular.module('adminApp')
     QueryService.contact.query($routeParams.status, 'detail', function(results) {
       $scope.contacts = results;
     });
+
+    $scope.export = function() {
+
+    };
   });

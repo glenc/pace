@@ -15,4 +15,8 @@ angular.module('adminApp')
     QueryService.family.query($routeParams.status, 'names', function(results) {
       $scope.families = results;
     });
+
+    $scope.export = function() {
+
+    };
   });

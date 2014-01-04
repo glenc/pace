@@ -92,3 +92,18 @@ a.input-row-btn {
 .narrow-gutter .last {
   padding-right: 15px;
 }
+
+@media print
+{
+  .navbar, .menu-toggler, .sidebar, .breadcrumbs, .noprint {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  abbr[title]:after {
+    content: "";
+  }
+}

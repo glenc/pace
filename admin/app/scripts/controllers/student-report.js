@@ -13,4 +13,8 @@ angular.module('adminApp')
     QueryService.student.query($routeParams.grade, 'detail', function(results) {
       $scope.students = results;
     });
+
+    $scope.export = function() {
+
+    };
   });
