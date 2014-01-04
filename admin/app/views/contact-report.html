@@ -12,6 +12,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Family</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone Numbers</th>
@@ -19,7 +20,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="contact in contacts | orderBy:['lastName', 'firstName']">
+    <tr ng-repeat="contact in contacts | orderBy:['family_name', 'lastName', 'firstName']">
+      <td>{{contact.family_name}}</td>
       <td>{{contact.lastName}}, {{contact.firstName}}</td>
       <td>{{contact.email}}</td>
       <td>

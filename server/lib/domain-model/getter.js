@@ -20,7 +20,18 @@ Getter.prototype.execute = function(view, parameters, callback) {
     if (view.map) {
       doc = view.map(doc);
     }
-    callback(null, doc);
+    if (view.post) {
+      doc = view.post(doc);
+    }
+    if (view.contentType) {
+      console.log('hi');
+      return callback(null, function(res) {
+        res.setHeader('content-type', view.contentType);
+        res.send(200, doc);
+      });
+    } else {
+      callback(null, doc);
+    }
   });
 };
 

@@ -15,6 +15,7 @@ function flattenContacts(results) {
           .map(function(result) {
             return _.map(result.contacts, function(c) {
               c.family_id = result._id;
+              c.family_name = result.name;
               return c;
             });
           })
@@ -45,7 +46,14 @@ ContactQuery.prototype.execute = function(view, parameters, callback) {
     if (view.post) {
       results = view.post(results);
     }
-    callback(null, results);
+    if (view.contentType) {
+      return callback(null, function(res) {
+        res.setHeader('content-type', view.contentType);
+        res.send(200, results);
+      });
+    } else {
+      callback(null, results);
+    }
   });
 };
 
@@ -61,7 +69,12 @@ ContactQuery.prototype.createQuery = function(view, parameters) {
 
   // add contacts. to the beginning of each select item
   var select = view.select || '';
-  select = _.map(select.split(' '), function(s) { return 'contacts.' + s; }).join(' ');
+  select = _.map(select.split(' '),
+                  function(s) {
+                    if (s == 'family_name')
+                      return 'name'
+                    return 'contacts.' + s;
+                  }).join(' ');
 
   var q = this._model.find(parameters, select);
   return q;

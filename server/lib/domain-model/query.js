@@ -18,7 +18,14 @@ Query.prototype.execute = function(view, parameters, callback) {
     if (view.post) {
       results = view.post(results);
     }
-    callback(null, results);
+    if (view.contentType) {
+      return callback(null, function(res) {
+        res.setHeader('content-type', view.contentType);
+        res.send(200, results);
+      });
+    } else {
+      callback(null, results);
+    }
   });
 };
 

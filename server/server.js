@@ -1,3 +1,4 @@
+var util      = require('util');
 var mongoose  = require('mongoose');
 var restify   = require('restify');
 var bunyan    = require('bunyan');
@@ -41,6 +42,21 @@ var handleOptions = function(req, res, next) {
   }
 };
 
+var csvFormatter = function(req, res, body) {
+  if (body instanceof Error)
+    return body.stack;
+
+  if (Buffer.isBuffer(body)) {
+    return body.toString('base64');
+  }
+
+  var filename = req.url.match(/^\/([^?\.]+)/)[1];
+  filename = filename.replace(/\//, '-');
+
+  res.setHeader('Content-Disposition', 'attachment;filename=' + filename + '.csv');
+  return body;
+}
+
 // initialize the environment
 function getEnvironment() {
   if (process.argv.length > 2) {
@@ -59,7 +75,10 @@ var config = require('./config/' + env + '.js');
 var server = restify.createServer({
   name: 'village-api',
   version: '1.0.0',
-  log: LOG
+  log: LOG,
+  formatters: {
+    'text/csv; q=0.1': csvFormatter
+  }
 });
 
 // plugins
