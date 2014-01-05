@@ -18,6 +18,7 @@ function flattenStudents(results) {
           .map(function(result) {
             return _.map(result.students, function(s) {
               s.family_id = result._id;
+              s.family_name = result.name;
               return s;
             });
           })
@@ -76,7 +77,12 @@ StudentQuery.prototype.createQuery = function(view, parameters) {
 
   // add students. to the beginning of each select item
   var select = view.select || '';
-  select = _.map(select.split(' '), function(s) { return 'students.' + s; }).join(' ');
+  select = _.map(select.split(' '),
+                  function(s) {
+                    if (s == 'family_name')
+                      return 'name';
+                    return 'students.' + s; }
+                  ).join(' ');
 
   var q = this._model.find(parameters, select);
   q.populate('students.graduatingClass');
