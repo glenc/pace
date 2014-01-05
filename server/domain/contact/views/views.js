@@ -57,8 +57,14 @@ var CsvColumns = {
   Type: function(obj) { return obj.type; }
 };
 
+var EmailCsvColumns = {
+  Email: function(obj) { return obj.email; }
+};
+
 module.exports = [
   new ContactView('', '_id firstName lastName'),
   new ContactView('detail', '_id family_name firstName lastName address phoneNumbers email type'),
-  new ContactCsvView('export', '_id family_name firstName lastName address phoneNumbers email type', CsvColumns)
+  new ContactCsvView('export', '_id family_name firstName lastName address phoneNumbers email type', CsvColumns),
+  new ContactView('emails', '_id email'),
+  new ContactCsvView('emails_export', '_id email', EmailCsvColumns)
 ];

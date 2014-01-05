@@ -38,6 +38,10 @@ angular.module('adminApp',
         templateUrl: 'views/family-report.html',
         controller: 'FamilyReportCtrl'
       })
+      .when('/reports/google-report/:cls?', {
+        templateUrl: 'views/google-report.html',
+        controller: 'GoogleReportCtrl'
+      })
       .otherwise({
         redirectTo: '/families'
       });

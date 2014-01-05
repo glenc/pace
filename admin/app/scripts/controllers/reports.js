@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('ReportsCtrl', function ($scope) {
+  .controller('ReportsCtrl', function ($scope, QueryService) {
     $scope.reportGroups = [
       {
         name: 'Family Reports',
@@ -38,5 +38,15 @@ angular.module('adminApp')
           { name: '6th Grade', url: 'reports/student-report/grade6' }
         ]
       }
-    ]
+    ];
+
+    QueryService.cls.query('', function(results) {
+      var rpt = {
+        name: 'Google Group Lists',
+        color: 'green',
+        reports: _.map(results, function(r) { return { name: r.name, url: 'reports/google-report/' + r.id + '?clsName=' + r.name }})
+      };
+
+      $scope.reportGroups.push(rpt);
+    });
   });
