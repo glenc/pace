@@ -17,6 +17,6 @@ angular.module('adminApp')
     });
 
     $scope.export = function() {
-
+      window.open(QueryService.family.urlFor($routeParams.status, 'export'));
     };
   });

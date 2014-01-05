@@ -3,6 +3,8 @@
 angular.module('adminApp')
   .service('QueryService', function QueryService($resource) {
     var base = 'http://localhost\\:8080';
+    var host = 'http://localhost';
+    var port = 8080;
 
     var urls = {
       family: '/families',
@@ -13,7 +15,7 @@ angular.module('adminApp')
     };
 
     var create = function(model) {
-      var resource = $resource(base + urls[model] + '/:query/:id');
+      var resource = $resource(host + '\\:' + port + urls[model] + '/:query/:id');
       var query = function(name, view, parameters, callback) {
         callback = arguments[arguments.length-1];
         parameters = arguments.length > 3 ? parameters : {};
@@ -34,9 +36,32 @@ angular.module('adminApp')
         query('get', view, { id: id }, callback);
       };
 
+      var urlFor = function(name, view, parameters) {
+        var url = host + ':' + port + urls[model];
+        if (name) {
+          url += '/' + name;
+        }
+
+        var p = parameters || {};
+        p.view = view;
+
+        if (p.id) {
+          url += '/' + p.id;
+          delete p.id;
+        }
+
+        if (!_.isEmpty(p)) {
+          url += '?';
+          url += $.param(p);
+        }
+
+        return url;
+      };
+
       return {
         query: query,
-        get: get
+        get: get,
+        urlFor: urlFor
       };
     };
 

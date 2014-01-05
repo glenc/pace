@@ -15,6 +15,6 @@ angular.module('adminApp')
     });
 
     $scope.export = function() {
-
+      window.open(QueryService.student.urlFor($routeParams.grade, 'export'));
     };
   });
