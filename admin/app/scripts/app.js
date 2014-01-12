@@ -34,7 +34,7 @@ angular.module('adminApp',
         templateUrl: 'views/student-report.html',
         controller: 'StudentReportCtrl'
       })
-      .when('/reports/family-report/:status?', {
+      .when('/reports/family-report', {
         templateUrl: 'views/family-report.html',
         controller: 'FamilyReportCtrl'
       })

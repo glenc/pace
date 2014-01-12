@@ -1,18 +1,22 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('StudentReportCtrl', function ($scope, $routeParams, QueryService) {
-    var grade = $routeParams.grade;
-    if (grade) {
-      var num = grade[grade.length-1];
-      $scope.title = 'Grade ' + num;
-    } else {
-      $scope.title = 'All Students';
-    }
+  .controller('StudentReportCtrl', function ($scope, QueryService) {
+    $scope.query = {
+      grade: 'all'
+    };
 
-    QueryService.student.query($routeParams.grade, 'detail', function(results) {
-      $scope.students = results;
-    });
+    $scope.refreshView = function() {
+      var p = {};
+      if ($scope.query.grade != 'all') {
+        p.grade = $scope.query.grade;
+      }
+      QueryService.student.query('', 'detail', p, function(results) {
+        $scope.students = results;
+      });
+    };
+
+    $scope.refreshView();
 
     $scope.export = function() {
       window.open(QueryService.student.urlFor($routeParams.grade, 'export'));

@@ -1,22 +1,24 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('FamilyReportCtrl', function ($scope, $routeParams, QueryService) {
-    var fixCase = function(str) {
-      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  .controller('FamilyReportCtrl', function ($scope, QueryService) {
+    $scope.query = {
+      status: 'Active'
     };
 
-    if ($routeParams.status) {
-      $scope.title = fixCase($routeParams.status) + ' Families';
-    } else {
-      $scope.title = 'All Families';
-    }
+    $scope.refreshView = function() {
+      var p = {};
+      if ($scope.query.status != 'all') {
+        p.status = $scope.query.status;
+      }
+      QueryService.family.query('', 'names', p, function(results) {
+        $scope.families = results;
+      });
+    };
 
-    QueryService.family.query($routeParams.status, 'names', function(results) {
-      $scope.families = results;
-    });
+    $scope.refreshView();
 
     $scope.export = function() {
-      window.open(QueryService.family.urlFor($routeParams.status, 'export'));
+      window.open(QueryService.family.urlFor('', 'export', {status:$routeParams.status}));
     };
   });

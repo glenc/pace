@@ -1,20 +1,22 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('ContactReportCtrl', function ($scope, $routeParams, QueryService) {
-    var fixCase = function(str) {
-      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  .controller('ContactReportCtrl', function ($scope, QueryService) {
+    $scope.query = {
+      status: 'Active'
     };
 
-    if ($routeParams.status) {
-      $scope.title = fixCase($routeParams.status) + ' Contacts';
-    } else {
-      $scope.title = 'All Contacts';
-    }
+    $scope.refreshView = function() {
+      var p = {};
+      if ($scope.query.status != 'all') {
+        p.status = $scope.query.status;
+      }
+      QueryService.contact.query('', 'detail', p, function(results) {
+        $scope.contacts = results;
+      });
+    };
 
-    QueryService.contact.query($routeParams.status, 'detail', function(results) {
-      $scope.contacts = results;
-    });
+    $scope.refreshView();
 
     $scope.export = function() {
       window.open(QueryService.contact.urlFor($routeParams.status, 'export'));

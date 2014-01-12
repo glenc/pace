@@ -8,7 +8,7 @@ angular.module('adminApp')
 
     $scope.title = $routeParams.clsName;
 
-    QueryService.contact.query('active', 'emails', { cls: $routeParams.cls }, function(results) {
+    QueryService.contact.query('', 'emails', { cls: $routeParams.cls, status:'active' }, function(results) {
       $scope.contacts = results;
     });
 

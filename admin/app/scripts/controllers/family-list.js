@@ -2,8 +2,8 @@
 
 angular.module('adminApp')
   .controller('FamilyListCtrl', function ($scope, $location, QueryService, CommandService, PubSub, $modal) {
-    $scope.view = {
-      filter: 'active'
+    $scope.query = {
+      status: 'Active'
     };
 
     // functions
@@ -23,8 +23,11 @@ angular.module('adminApp')
 
     // load view
     $scope.refreshView = function() {
-      var view = $scope.view.filter == 'all' ? '' : $scope.view.filter;
-      QueryService.family.query(view, function(results) {
+      var p = {};
+      if ($scope.query.status != 'all') {
+        p.status = $scope.query.status;
+      }
+      QueryService.family.query('', '', p, function(results) {
         $scope.families = results;
       });
     };

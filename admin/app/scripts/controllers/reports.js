@@ -7,35 +7,17 @@ angular.module('adminApp')
         name: 'Family Reports',
         color: 'blue',
         reports: [
-          { name: 'Active Families', url: 'reports/family-report/active' },
-          { name: 'Waitlist Families', url: 'reports/family-report/waitlist' },
-          { name: 'New Families', url: 'reports/family-report/new' },
-          { name: 'All Families', url: 'reports/family-report' },
-          { name: 'Alumni Families', url: 'reports/family-report/alumni' },
-          { name: 'Exited Families', url: 'reports/family-report/exited' }
-        ]
-      },
-      {
-        name: 'Contact Reports',
-        color: 'red',
-        reports: [
-          { name: 'Active Contacts', url: 'reports/contact-report/active' },
-          { name: 'Waitlist Contacts', url: 'reports/contact-report/waitlist' },
-          { name: 'New Contacts', url: 'reports/contact-report/new' },
-          { name: 'All Contacts', url: 'reports/contact-report' }
+          { name: 'Families by Status', url: 'reports/family-report' },
+          { name: 'Active Families by Grade', url: 'reports/family-report' },
+          { name: 'Contacts by Status', url: 'reports/contact-report' },
+          { name: 'Active Contacts by Grade', url: 'reports/contact-report' }
         ]
       },
       {
         name: 'Student Reports',
         color: 'purple',
         reports: [
-          { name: 'All Students', url: 'reports/student-report' },
-          { name: '1st Grade', url: 'reports/student-report/grade1' },
-          { name: '2nd Grade', url: 'reports/student-report/grade2' },
-          { name: '3rd Grade', url: 'reports/student-report/grade3' },
-          { name: '4th Grade', url: 'reports/student-report/grade4' },
-          { name: '5th Grade', url: 'reports/student-report/grade5' },
-          { name: '6th Grade', url: 'reports/student-report/grade6' }
+          { name: 'Class Roster', url: 'reports/student-report' }
         ]
       }
     ];

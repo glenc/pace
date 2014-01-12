@@ -81,10 +81,5 @@ ContactQuery.prototype.createQuery = function(view, parameters) {
 };
 
 module.exports = [
-  new ContactQuery(''),
-  new ContactQuery('active',   { status: 'Active' }),
-  new ContactQuery('waitlist', { status: 'Waitlist' }),
-  new ContactQuery('new',      { status: 'New' }),
-  new ContactQuery('alumni',   { status: 'Alumni' }),
-  new ContactQuery('exited',   { status: 'Exited' }),
+  new ContactQuery('')
 ];

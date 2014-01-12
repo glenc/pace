@@ -24,10 +24,5 @@ FamilyQuery.prototype.createQuery = function(view, parameters) {
 
 module.exports = [
   new FamilyQuery(''),
-  new FamilyQuery('active',   { status: 'Active' }),
-  new FamilyQuery('waitlist', { status: 'Waitlist' }),
-  new FamilyQuery('new',      { status: 'New' }),
-  new FamilyQuery('alumni',   { status: 'Alumni' }),
-  new FamilyQuery('exited',   { status: 'Exited' }),
   new Getter('family', db.Family, 'students.graduatingClass')
 ];

@@ -91,11 +91,5 @@ StudentQuery.prototype.createQuery = function(view, parameters) {
 };
 
 module.exports = [
-  new StudentQuery(''),
-  new StudentQuery('grade6', { grade: 6 }),
-  new StudentQuery('grade5', { grade: 5 }),
-  new StudentQuery('grade4', { grade: 4 }),
-  new StudentQuery('grade3', { grade: 3 }),
-  new StudentQuery('grade2', { grade: 2 }),
-  new StudentQuery('grade1', { grade: 1 })
+  new StudentQuery('')
 ];

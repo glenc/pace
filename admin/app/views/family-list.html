@@ -6,12 +6,12 @@
     <button type="button" class="btn btn-primary btn-sm" ng-click="newFamily()"><i class="fa fa-plus"></i> New Family</button>
   </div>
   <div class="btn-group pull-right">
-    <select ng-change="refreshView()" ng-model="view.filter" class="form-control">
+    <select ng-change="refreshView()" ng-model="query.status" class="form-control">
       <option value="all">All</option>
-      <option value="active">Active Families</option>
-      <option value="waitlist">Waitlist</option>
-      <option value="new">New Families</option>
-      <option value="alumni">Alumni</option>
+      <option value="Active">Active Families</option>
+      <option value="Waitlist">Waitlist</option>
+      <option value="New">New Families</option>
+      <option value="Alumni">Alumni</option>
     </select>
   </div>
 </div>
