@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('ReportsCtrl', function ($scope, QueryService) {
+  .controller('ReportListCtrl', function ($scope, QueryService) {
     $scope.reportGroups = [
       {
         name: 'Family Reports',

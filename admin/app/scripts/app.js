@@ -7,39 +7,39 @@ angular.module('adminApp',
   .config(function ($routeProvider) {
     $routeProvider
       .when('/families', {
-        templateUrl: 'views/family-list.html',
+        templateUrl: 'views/families/family-list.html',
         controller: 'FamilyListCtrl'
       })
       .when('/families/:id', {
-        templateUrl: 'views/family-detail.html',
+        templateUrl: 'views/families/family-detail.html',
         controller: 'FamilyDetailCtrl'
       })
       .when('/settings', {
-        templateUrl: 'views/settings.html',
-        controller: 'SettingsCtrl'
+        templateUrl: 'views/settings/setting-list.html',
+        controller: 'SettingListCtrl'
       })
       .when('/classes', {
-        templateUrl: 'views/classes.html',
-        controller: 'ClassesCtrl'
+        templateUrl: 'views/classes/class-list.html',
+        controller: 'ClassListCtrl'
       })
       .when('/reports', {
-        templateUrl: 'views/reports.html',
-        controller: 'ReportsCtrl'
+        templateUrl: 'views/reports/report-list.html',
+        controller: 'ReportListCtrl'
       })
       .when('/reports/contact-report/:status?', {
-        templateUrl: 'views/contact-report.html',
+        templateUrl: 'views/reports/contact-report.html',
         controller: 'ContactReportCtrl'
       })
       .when('/reports/student-report/:grade?', {
-        templateUrl: 'views/student-report.html',
+        templateUrl: 'views/reports/student-report.html',
         controller: 'StudentReportCtrl'
       })
       .when('/reports/family-report', {
-        templateUrl: 'views/family-report.html',
+        templateUrl: 'views/reports/family-report.html',
         controller: 'FamilyReportCtrl'
       })
       .when('/reports/google-report/:cls?', {
-        templateUrl: 'views/google-report.html',
+        templateUrl: 'views/reports/google-report.html',
         controller: 'GoogleReportCtrl'
       })
       .otherwise({

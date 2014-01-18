@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('ConfigDialogCtrl', function ($scope, $modalInstance, config) {
+  .controller('SettingDialogCtrl', function ($scope, $modalInstance, config) {
 
     $scope.config = config;
 

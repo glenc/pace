@@ -11,7 +11,7 @@ angular.module('adminApp')
 
     $scope.newContact = function() {
       var modal = $modal.open({
-        templateUrl: 'views/contact-dialog.html',
+        templateUrl: 'views/families/contact-dialog.html',
         controller: 'ContactDialogCtrl',
         resolve: {
           contact: function() { return {}; }
@@ -29,7 +29,7 @@ angular.module('adminApp')
 
     $scope.editContact = function(contact) {
       var modal = $modal.open({
-        templateUrl: 'views/contact-dialog.html',
+        templateUrl: 'views/families/contact-dialog.html',
         controller: 'ContactDialogCtrl',
         resolve: {
           contact: function() { return angular.copy(contact); }
@@ -60,7 +60,7 @@ angular.module('adminApp')
 
     $scope.newStudent = function() {
       var modal = $modal.open({
-        templateUrl: 'views/student-dialog.html',
+        templateUrl: 'views/families/student-dialog.html',
         controller: 'StudentDialogCtrl',
         resolve: {
           student: function() { return {}; }
@@ -78,7 +78,7 @@ angular.module('adminApp')
 
     $scope.editStudent = function(student) {
       var modal = $modal.open({
-        templateUrl: 'views/student-dialog.html',
+        templateUrl: 'views/families/student-dialog.html',
         controller: 'StudentDialogCtrl',
         resolve: {
           student: function() { return angular.copy(student); }

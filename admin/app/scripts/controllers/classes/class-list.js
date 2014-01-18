@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('ClassesCtrl', function ($scope, $modal, QueryService, CommandService) {
+  .controller('ClassListCtrl', function ($scope, $modal, QueryService, CommandService) {
 
     $scope.newClass = function() {
       var modal = $modal.open({
-        templateUrl: 'views/class-dialog.html',
+        templateUrl: 'views/classes/class-dialog.html',
         controller: 'ClassDialogCtrl',
         resolve: {
           cls: function() { return { }; }
@@ -22,7 +22,7 @@ angular.module('adminApp')
 
     $scope.editClass = function(cls) {
       var modal = $modal.open({
-        templateUrl: 'views/class-dialog.html',
+        templateUrl: 'views/classes/class-dialog.html',
         controller: 'ClassDialogCtrl',
         resolve: {
           cls: function() { return angular.copy(cls); }

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-  .controller('SettingsCtrl', function ($scope, $modal, QueryService, CommandService) {
+  .controller('SettingListCtrl', function ($scope, $modal, QueryService, CommandService) {
     var refreshView = function() {
       QueryService.config.query('', function(results) {
         $scope.configs = results;
@@ -24,8 +24,8 @@ angular.module('adminApp')
 
     $scope.newConfig = function() {
       var modal = $modal.open({
-        templateUrl: 'views/config-dialog.html',
-        controller: 'ConfigDialogCtrl',
+        templateUrl: 'views/settings/setting-dialog.html',
+        controller: 'SettingDialogCtrl',
         resolve: {
           config: function() { return { new: true }; }
         }
@@ -42,8 +42,8 @@ angular.module('adminApp')
 
     $scope.editConfig = function(config) {
       var modal = $modal.open({
-        templateUrl: 'views/config-dialog.html',
-        controller: 'ConfigDialogCtrl',
+        templateUrl: 'views/settings/setting-dialog.html',
+        controller: 'SettingDialogCtrl',
         resolve: {
           config: function() { return configForEdit(angular.copy(config)); }
         }
