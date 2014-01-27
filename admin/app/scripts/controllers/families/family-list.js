@@ -9,7 +9,7 @@ angular.module('adminApp')
     // functions
     $scope.newFamily = function() {
       var modal = $modal.open({
-        templateUrl: 'views/new-family-dialog.html',
+        templateUrl: 'views/families/new-family-dialog.html',
         controller: 'NewFamilyDialogCtrl'
       });
 
